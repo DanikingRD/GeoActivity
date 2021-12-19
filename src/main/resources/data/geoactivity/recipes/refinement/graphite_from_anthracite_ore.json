@@ -1,0 +1,11 @@
+{
+  "type": "geoactivity:refinement",
+  "ingredient": {
+	"item": "geoactivity:anthracite_ore"
+  },
+  "result": {
+    "item": "geoactivity:anthracite_coal"
+  },
+  "time": 400,
+  "experience": 0.7
+}

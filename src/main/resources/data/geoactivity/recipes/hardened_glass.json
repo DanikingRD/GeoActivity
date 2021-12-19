@@ -1,0 +1,23 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "GSG",
+    "GFG",
+    "GSG"
+  ],
+  "key": {
+    "G": {
+      "item": "glass"
+    },
+    "S": {
+      "item": "geoactivity:carbon_stick"
+    },
+    "F": {
+      "item": "geoactivity:carbon_fiber"
+    }
+  },
+  "result": {
+    "item": "geoactivity:hardened_glass",
+    "count": 8
+  }
+}

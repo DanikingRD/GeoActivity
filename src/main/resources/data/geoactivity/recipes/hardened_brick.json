@@ -1,0 +1,23 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "GCG",
+    "CBC",
+    "GCG"
+  ],
+  "key": {
+    "C": {
+      "tag": "stone_bricks"
+    },
+    "B": {
+      "item": "geoactivity:carbon_stick"
+    },
+    "G": {
+      "item": "geoactivity:graphite"
+    }
+  },
+  "result": {
+    "item": "geoactivity:hardened_brick",
+    "count": 8
+  }
+}

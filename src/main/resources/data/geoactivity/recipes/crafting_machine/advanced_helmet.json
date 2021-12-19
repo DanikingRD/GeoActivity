@@ -1,0 +1,15 @@
+{
+  "type": "geoactivity:crafting_machine_shaped",
+  "pattern": [
+    "###",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "geoactivity:small_precious_alloy_ingot"
+    }
+  },
+  "result": {
+    "item": "geoactivity:advanced_helmet"
+  }
+}

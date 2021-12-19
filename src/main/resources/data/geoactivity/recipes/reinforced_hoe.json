@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "ii",
+    "I ",
+    "g "
+  ],
+  "key": {
+    "i": {
+      "item": "iron_ingot"
+    },
+    "I": {
+      "item": "iron_hoe"
+    },
+    "g": {
+      "item": "gold_ingot"
+    }
+  },
+  "result": {
+    "item": "geoactivity:reinforced_hoe"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "geoactivity:crafting_extended",
+  "pattern": [
+    "PCS",
+    " C ",
+    " # "
+  ],
+  "key": {
+    "S": {
+      "item": "geoactivity:reinforced_shovel"
+    },
+    "P": {
+      "item": "geoactivity:reinforced_pickaxe"
+    },
+    "C": {
+      "item": "geoactivity:carbon_fiber"
+    },
+    "#": {
+      "item": "geoactivity:carbon_stick"
+    }
+  },
+  "result": {
+    "item": "geoactivity:reinforced_miner"
+  }
+}

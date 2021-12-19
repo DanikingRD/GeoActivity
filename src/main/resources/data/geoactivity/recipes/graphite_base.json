@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "GSG",
+    "FGF",
+    "GSG"
+  ],
+  "key": {
+    "G": {
+      "item": "geoactivity:graphite"
+    },
+    "S": {
+      "item": "geoactivity:carbon_stick"
+    },
+    "F": {
+      "item": "geoactivity:carbon_fiber"
+    }
+  },
+  "result": {
+    "item": "geoactivity:graphite_base"
+  }
+}

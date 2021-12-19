@@ -1,0 +1,7 @@
+{
+    "replace": false,
+    "values": [
+        "geoactivity:anthracite_ore",
+        "geoactivity:hardened_brick"
+    ]
+}

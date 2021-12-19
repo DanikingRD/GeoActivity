@@ -1,0 +1,19 @@
+{
+  "type": "geoactivity:crafting_machine_shaped",
+  "pattern": [
+    " G ",
+    " D ",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "gold_ingot"
+    },
+    "D": {
+      "item": "diamond"
+    }
+  },
+  "result": {
+    "item": "geoactivity:small_precious_alloy_ingot"
+  }
+}

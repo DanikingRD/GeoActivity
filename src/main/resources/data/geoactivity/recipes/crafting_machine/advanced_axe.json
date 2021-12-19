@@ -1,0 +1,19 @@
+{
+  "type": "geoactivity:crafting_machine_shaped",
+  "pattern": [
+    "## ",
+    "#/ ",
+    " / "
+  ],
+  "key": {
+    "#": {
+      "item": "geoactivity:small_precious_alloy_ingot"
+    },
+    "/": {
+      "item": "geoactivity:carbon_stick"
+    }
+  },
+  "result": {
+    "item": "geoactivity:advanced_axe"
+  }
+}

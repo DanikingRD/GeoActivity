@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "geoactivity.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "recharge.InGameHudMixin",
+    "recharge.ItemMixin",
+    "recharge.ItemStackMixin",
+    "recharge.MiningToolItemMixin",
+    "recharge.PlayerInventoryMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

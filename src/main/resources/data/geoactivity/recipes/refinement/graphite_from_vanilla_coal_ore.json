@@ -1,0 +1,11 @@
+{
+  "type": "geoactivity:refinement",
+  "ingredient": {
+	"item": "minecraft:coal_ore"
+  },
+  "result": {
+    "item": "minecraft:coal"
+  },
+  "time": 400,
+  "experience": 0.2
+}

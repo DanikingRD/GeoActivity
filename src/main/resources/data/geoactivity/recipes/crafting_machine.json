@@ -1,0 +1,29 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "GRG",
+    "DBD",
+    "GQG"
+  ],
+  "key": {
+    "R": {
+      "item": "geoactivity:coal_refiner"
+    },
+    "B": {
+      "item": "geoactivity:graphite_base"
+    },
+    "D": {
+      "item": "diamond"
+    },
+    "G": {
+      "item": "glowstone_dust"
+    },
+    "Q": {
+      "item": "quartz"
+    }
+  },
+  "result": {
+    "item": "geoactivity:crafting_machine"
+
+  }
+}

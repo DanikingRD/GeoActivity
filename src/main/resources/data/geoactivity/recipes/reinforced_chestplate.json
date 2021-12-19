@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "i i",
+    "gIg",
+    "igi"
+  ],
+  "key": {
+    "i": {
+      "item": "iron_ingot"
+    },
+    "g": {
+      "item": "gold_ingot"
+    },
+    "I": {
+      "item": "iron_chestplate"
+    }
+  },
+  "result": {
+    "item": "geoactivity:reinforced_chestplate"
+  }
+}
