@@ -11,7 +11,7 @@ import geoactivity.client.integration.rei.display.ConversionDisplay;
 import geoactivity.client.integration.rei.display.RefinementDisplay;
 import geoactivity.client.integration.rei.display.crafting.CraftingMachineShapedDisplay;
 import geoactivity.client.integration.rei.display.crafting.CraftingMachineShapelessDisplay;
-import geoactivity.common.GeoActivity;
+import geoactivity.GeoActivity;
 import geoactivity.common.recipe.ConversionRecipe;
 import geoactivity.common.recipe.RefinementRecipe;
 import geoactivity.common.recipe.crafting.CraftingMachineShapedRecipe;

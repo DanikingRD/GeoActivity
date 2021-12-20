@@ -1,5 +1,6 @@
 package geoactivity.common;
 
+import geoactivity.GeoActivity;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 

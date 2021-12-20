@@ -16,21 +16,21 @@ public class GAChargeItem extends Item implements Charge {
     public int getCharge() {
         if (this == GAObjects.LIGNITE_COAL) {
             return 100;
-        }
-        if (this == GAObjects.BITUMINOUS_COAL) {
+        } else if (this == GAObjects.BITUMINOUS_COAL) {
             return 200;
-        }
-        if (this == GAObjects.ANTHRACITE_COAL) {
+        } else if (this == GAObjects.ANTHRACITE_COAL) {
             return 300;
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     @Override
     public Rarity getRarity(ItemStack stack) {
         if (stack.getItem() == GAObjects.ANTHRACITE_COAL) {
             return Rarity.UNCOMMON;
+        } else {
+            return super.getRarity(stack);
         }
-        return super.getRarity(stack);
     }
 }

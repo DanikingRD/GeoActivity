@@ -1,7 +1,7 @@
 package geoactivity.common.registry;
 
 import geoactivity.client.gui.screen.handler.*;
-import geoactivity.common.GeoActivity;
+import geoactivity.GeoActivity;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;

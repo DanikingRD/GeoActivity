@@ -1,6 +1,8 @@
 {
     "replace": false,
     "values": [
+        "geoactivity:anthracite_coal_block",
+        "geoactivity:deepslate_anthracite_ore",
         "geoactivity:anthracite_ore",
         "geoactivity:hardened_brick"
     ]

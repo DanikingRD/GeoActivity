@@ -1,7 +1,8 @@
 {
     "replace": false,
     "values": [
-        "geoactivity:lignite_ore",
+        "geoactivity:bituminous_coal_block",
+        "geoactivity:deepslate_bituminous_ore",
         "geoactivity:bituminous_ore",
         "geoactivity:hardened_glass",
         "geoactivity:graphite_base",

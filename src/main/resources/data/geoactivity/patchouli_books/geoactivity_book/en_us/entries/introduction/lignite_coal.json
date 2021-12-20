@@ -1,0 +1,27 @@
+{
+  "category": "geoactivity:introduction",
+  "name": "Lignite Coal",
+  "icon": "geoactivity:lignite_coal",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Lignite Coal can be used as fuel for machines or recipe for the Coal Refiner.$(br2)You can find it close to the surface, which makes it very easy to mine.$(br2)Smelts 2 items per fuel in a furnace"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "geoactivity:textures/gui/patchouli/lignite_ore.png"
+      ],
+      "border": true
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:lignite_coal_block",
+      "recipe2": "minecraft:campfire"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:coal_refiner"
+    }
+  ]
+}

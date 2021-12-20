@@ -19,10 +19,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "geoactivity.common.GeoActivity"
+      "geoactivity.GeoActivity"
     ],
     "client": [
-      "geoactivity.client.GeoActivityClient"
+      "geoactivity.GeoActivityClient"
     ],
     "rei_plugins": [
       "geoactivity.client.integration.rei.GAREIPlugin"

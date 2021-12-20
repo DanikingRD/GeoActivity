@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "geoactivity:lignite_coal",
+    "geoactivity:bituminous_coal",
+    "geoactivity:anthracite_coal"
+  ]
+}

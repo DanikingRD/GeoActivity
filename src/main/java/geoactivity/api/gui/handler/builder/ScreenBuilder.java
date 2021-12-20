@@ -1,7 +1,7 @@
 package geoactivity.api.gui.handler.builder;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import geoactivity.common.GeoActivity;
+import geoactivity.GeoActivity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;

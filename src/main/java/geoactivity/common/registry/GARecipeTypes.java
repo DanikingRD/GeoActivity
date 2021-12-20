@@ -1,6 +1,6 @@
 package geoactivity.common.registry;
 
-import geoactivity.common.GeoActivity;
+import geoactivity.GeoActivity;
 import geoactivity.common.recipe.ConversionRecipe;
 import geoactivity.common.recipe.CraftingExtendedSerializer;
 import geoactivity.common.recipe.crafting.CraftingMachineShapedRecipe;

@@ -1,0 +1,6 @@
+{
+  "name": "item.geoactivity.geoactivity_book",
+  "landing_text": "item.geoactivity.geoactivity_book.landing_text",
+  "cutom_book_item": "geoactivity:geoactivity_book",
+  "dont_generate_book": true
+}

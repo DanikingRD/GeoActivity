@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "geoactivity:lignite_coal_block"
+    }
+  ],
+  "result": {
+    "item": "geoactivity:lignite_coal",
+    "count": 9
+  }
+}

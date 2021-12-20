@@ -1,6 +1,6 @@
 package geoactivity.common.registry;
 
-import geoactivity.common.GeoActivity;
+import geoactivity.GeoActivity;
 import geoactivity.common.block.entity.CoalRefinerBlockEntity;
 import geoactivity.common.block.entity.CraftingMachineBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;

@@ -1,5 +1,6 @@
-package geoactivity.common;
+package geoactivity;
 
+import geoactivity.common.GAConfig;
 import geoactivity.common.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -36,6 +37,7 @@ public class GeoActivity implements ModInitializer {
 		  });
 		GAEvents.init();
 		GAObjects.init();
+		GAFuels.init();
 		GABlockEntityTypes.init();
 		GARecipeTypes.init();
 		//GAConfiguredFeatures.init();

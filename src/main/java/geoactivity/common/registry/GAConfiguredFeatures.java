@@ -1,30 +1,18 @@
 package geoactivity.common.registry;
 
-import com.google.common.collect.ImmutableList;
-
+import geoactivity.GeoActivity;
 import geoactivity.common.GAConfig;
-import geoactivity.common.GeoActivity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
 
 //Deprecated api
-import net.fabricmc.fabric.api.biome.v1.BiomeModification;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
+
 
 @SuppressWarnings("deprecation")
 public final class GAConfiguredFeatures {
     
     private static final GAConfig CONFIG = GeoActivity.config;
-    
+
+    //public static final List<OreFeatureConfig.Target> LIGNITE_ORES = List.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, GAObjects.LIGNITE_ORE.getDefaultState()), OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, GAObjects.DEEPSLATE_LIGNITE_ORE.getDefaultState()));
+
 //    //Creates a new modification for the world
 //    private static final BiomeModification WORLD_GENERATOR = BiomeModifications.create(new Identifier(GeoActivity.MODID, "configure_features"));
 //

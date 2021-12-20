@@ -1,0 +1,23 @@
+{
+  "category": "geoactivity:introduction",
+  "name": "Anthracite Coal",
+  "icon": "geoactivity:anthracite_coal",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Anthracite is very rare.$(br2)You will usually find the ore very near to diamond but is not easy to mine(requires a diamond pickaxe).$(br2)It is 2.7 times for efficient than Bituminous which means it smelts up to 16 items per fuel in a furnace!"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "geoactivity:textures/gui/patchouli/anthracite_ore.png"
+      ],
+      "border": true
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:anthracite_coal_block",
+      "recipe2": "minecraft:campfire"
+    }
+  ]
+}

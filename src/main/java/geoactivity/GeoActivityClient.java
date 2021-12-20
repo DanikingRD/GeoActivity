@@ -1,4 +1,4 @@
-package geoactivity.client;
+package geoactivity;
 
 import geoactivity.client.gui.screen.*;
 import geoactivity.common.event.handler.ItemTooltipHandler;

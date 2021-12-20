@@ -1,0 +1,23 @@
+{
+  "category": "geoactivity:introduction",
+  "name": "Bituminous Coal",
+  "icon": "geoactivity:bituminous_coal",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Spawning near gold, Bituminous Ore is less common than lignite and Bituminous Coal it's 3 times more efficient than Lignite.$(br2)You can used it as fuel for machines or recipe for the Coal Refiner.$(br2)Smelts 6 items per fuel in a furnace"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "geoactivity:textures/gui/patchouli/bituminous_ore.png"
+      ],
+      "border": true
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:bituminous_coal_block",
+      "recipe2": "minecraft:campfire"
+    }
+  ]
+}
