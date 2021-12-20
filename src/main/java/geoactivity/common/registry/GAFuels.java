@@ -2,7 +2,7 @@ package geoactivity.common.registry;
 
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 
-public class GAFuels {
+public final class GAFuels {
 
     public static void init() {
         final FuelRegistry registry = FuelRegistry.INSTANCE;

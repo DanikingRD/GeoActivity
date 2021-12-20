@@ -18,7 +18,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GARecipeTypes {
+public final class GARecipeTypes {
 
     private static final Map<RecipeSerializer<?>, Identifier> RECIPE_SERIALIZERS = new HashMap<>();
     private static final Map<RecipeType<?>, Identifier> RECIPE_TYPES = new HashMap<>();

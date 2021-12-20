@@ -8,7 +8,8 @@
     "recharge.ItemMixin",
     "recharge.ItemStackMixin",
     "recharge.MiningToolItemMixin",
-    "recharge.PlayerInventoryMixin"
+    "recharge.PlayerInventoryMixin",
+    "OrePlacedFeaturesAccessor"
   ],
   "client": [
   ],

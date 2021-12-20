@@ -1,47 +1,77 @@
 package geoactivity.common.registry;
 
 import geoactivity.GeoActivity;
-import geoactivity.common.GAConfig;
+import geoactivity.mixin.OrePlacedFeaturesAccessor;
+import net.fabricmc.fabric.api.biome.v1.BiomeModification;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.BuiltinRegistries;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.decorator.HeightRangePlacementModifier;
+import net.minecraft.world.gen.feature.*;
 
-//Deprecated api
+import java.util.List;
 
-
-@SuppressWarnings("deprecation")
 public final class GAConfiguredFeatures {
     
-    private static final GAConfig CONFIG = GeoActivity.config;
+    //targets
+    public static final List<OreFeatureConfig.Target> LIGNITE_ORES = List.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, GAObjects.LIGNITE_ORE.getDefaultState()), OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, GAObjects.DEEPSLATE_LIGNITE_ORE.getDefaultState()));
+    public static final List<OreFeatureConfig.Target> BITUMINOUS_ORES = List.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, GAObjects.BITUMINOUS_ORE.getDefaultState()), OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, GAObjects.DEEPSLATE_BITUMINOUS_ORE.getDefaultState()));
+    public static final List<OreFeatureConfig.Target> ANTHRACITE_ORES = List.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, GAObjects.ANTHRACITE_ORE.getDefaultState()), OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, GAObjects.DEEPSLATE_ANTHRACITE_ORE.getDefaultState()));
+    //ore features
+    public static final ConfiguredFeature<?, ?> LIGNITE_ORE_FEATURE = Feature.ORE.configure(new OreFeatureConfig(LIGNITE_ORES, 8));
+    public static final ConfiguredFeature<?, ?> LIGNITE_ORE_BURIED_FEATURE = Feature.ORE.configure(new OreFeatureConfig(LIGNITE_ORES, 8, 0.5F));
+    public static final ConfiguredFeature<?, ?> BITUMINOUS_ORE_FEATURE = Feature.ORE.configure(new OreFeatureConfig(BITUMINOUS_ORES, 7));
+    public static final ConfiguredFeature<?, ?> BITUMINOUS_ORE_BURIED_FEATURE = Feature.ORE.configure(new OreFeatureConfig(BITUMINOUS_ORES, 7, 0.5F));
+    public static final ConfiguredFeature<?, ?> ANTHRACITE_ORE_FEATURE = Feature.ORE.configure(new OreFeatureConfig(ANTHRACITE_ORES, 4, 0.5F));
+    public static final ConfiguredFeature<?,?>  ANTHRACITE_ORE_LARGE_FEATURE = Feature.ORE.configure(new OreFeatureConfig(ANTHRACITE_ORES, 9, 0.7F));
+    public static final ConfiguredFeature<?, ?> ANTHRACITE_ORE_BURIED_FEATURE = Feature.ORE.configure(new OreFeatureConfig(ANTHRACITE_ORES, 6, 1.0F));
+    //follows coal
+    public static final PlacedFeature LIGNITE_ORE_UPPER = LIGNITE_ORE_FEATURE.withPlacement(OrePlacedFeaturesAccessor.callModifiersWithCount(30, HeightRangePlacementModifier.uniform(YOffset.fixed(136), YOffset.getTop())));
+    public static final PlacedFeature LIGNITE_ORE_LOWER = LIGNITE_ORE_BURIED_FEATURE.withPlacement(OrePlacedFeaturesAccessor.callModifiersWithCount(20, HeightRangePlacementModifier.trapezoid(YOffset.fixed(0), YOffset.fixed(192))));
+    //follows lapis
+    public static final PlacedFeature BITUMINOUS_ORE_UPPER = BITUMINOUS_ORE_FEATURE.withPlacement(OrePlacedFeaturesAccessor.callModifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(-32), YOffset.fixed(32))));
+    public static final PlacedFeature BITUMINOUS_ORE_LOWER = BITUMINOUS_ORE_BURIED_FEATURE.withPlacement(OrePlacedFeaturesAccessor.callModifiersWithCount(4, HeightRangePlacementModifier.trapezoid(YOffset.getBottom(), YOffset.fixed(64))));
+    //follows diamond
+    public static final PlacedFeature ANTHRACITE_ORE_UPPER = ANTHRACITE_ORE_FEATURE.withPlacement(OrePlacedFeaturesAccessor.callModifiersWithCount(7,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(80))));
+    public static final PlacedFeature ANTHRACITE_ORE_LARGE = ANTHRACITE_ORE_LARGE_FEATURE.withPlacement(OrePlacedFeaturesAccessor.callModifiersWithRarity(9, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(80))));
+    public static final PlacedFeature ANTHRACITE_ORE_LOWER = ANTHRACITE_ORE_BURIED_FEATURE.withPlacement(OrePlacedFeaturesAccessor.callModifiersWithCount(4, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(80))));
 
-    //public static final List<OreFeatureConfig.Target> LIGNITE_ORES = List.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, GAObjects.LIGNITE_ORE.getDefaultState()), OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, GAObjects.DEEPSLATE_LIGNITE_ORE.getDefaultState()));
+    public static void init() {
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(GeoActivity.MODID, "lignite_ore"), LIGNITE_ORE_FEATURE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(GeoActivity.MODID, "lignite_ore_buried"), LIGNITE_ORE_BURIED_FEATURE);
+        Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(GeoActivity.MODID, "lignite_ore_upper"), LIGNITE_ORE_UPPER);
+        Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(GeoActivity.MODID, "lignite_ore_lower"), LIGNITE_ORE_LOWER);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(GeoActivity.MODID, "bituminous_ore"), BITUMINOUS_ORE_FEATURE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(GeoActivity.MODID, "bituminous_ore_buried"), BITUMINOUS_ORE_BURIED_FEATURE);
+        Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(GeoActivity.MODID, "bituminous_ore_upper"), BITUMINOUS_ORE_UPPER);
+        Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(GeoActivity.MODID, "bituminous_ore_lower"), BITUMINOUS_ORE_LOWER);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(GeoActivity.MODID, "anthracite_ore"), ANTHRACITE_ORE_FEATURE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(GeoActivity.MODID, "anthracite_ore_large"), ANTHRACITE_ORE_LARGE_FEATURE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(GeoActivity.MODID, "anthracite_ore_buried"), ANTHRACITE_ORE_BURIED_FEATURE);
+        Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(GeoActivity.MODID, "anthracite_ore_upper"), ANTHRACITE_ORE_UPPER);
+        Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(GeoActivity.MODID, "anthracite_ore_large"), ANTHRACITE_ORE_LARGE);
+        Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(GeoActivity.MODID, "anthracite_ore_lower"), ANTHRACITE_ORE_LOWER);
+        final BiomeModification worldGeneration = BiomeModifications.create(new Identifier(GeoActivity.MODID, "world_generation"));
+        worldGeneration.add(ModificationPhase.ADDITIONS, BiomeSelectors.foundInOverworld(), ctx -> {
+            if (GeoActivity.config.generateLignite) {
+                ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.UNDERGROUND_ORES, LIGNITE_ORE_UPPER);
+                ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.UNDERGROUND_ORES, LIGNITE_ORE_LOWER);
+            }
+            if (GeoActivity.config.generateBituminous) {
+                ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.UNDERGROUND_ORES, BITUMINOUS_ORE_UPPER);
+                ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.UNDERGROUND_ORES, BITUMINOUS_ORE_LOWER);
+            }
+            if (GeoActivity.config.generateAnthracite) {
+                ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.UNDERGROUND_ORES, ANTHRACITE_ORE_UPPER);
+                ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.UNDERGROUND_ORES, ANTHRACITE_ORE_LARGE);
+                ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.UNDERGROUND_ORES, ANTHRACITE_ORE_LOWER);
+            }
+        });
+    }
 
-//    //Creates a new modification for the world
-//    private static final BiomeModification WORLD_GENERATOR = BiomeModifications.create(new Identifier(GeoActivity.MODID, "configure_features"));
-//
-//    /**
-//     * Configured Features
-//     */
-//    public static final ConfiguredFeature<?, ?> LIGNITE_ORE = create("lignite_ore", Feature.ORE.configure(new OreFeatureConfig(ImmutableList.of(OreFeatureConfig.createTarget(OreFeatureConfig.Rules.STONE_ORE_REPLACEABLES, GAObjects.LIGNITE_ORE.getDefaultState())), CONFIG.ligniteVeinSize)).uniformRange(YOffset.fixed(CONFIG.ligniteMinHeight), YOffset.fixed(CONFIG.ligniteMaxHeight)).spreadHorizontally().repeat(CONFIG.ligniteVeinsPerChunk));
-//    public static final ConfiguredFeature<?, ?> BITUMINOUS_ORE = create("bituminous_ore", Feature.ORE.configure(new OreFeatureConfig(ImmutableList.of(OreFeatureConfig.createTarget(OreFeatureConfig.Rules.STONE_ORE_REPLACEABLES, GAObjects.BITUMINOUS_ORE.getDefaultState())), CONFIG.bituminousVeinSize)).uniformRange(YOffset.fixed(CONFIG.bituminousMinHeight), YOffset.fixed(CONFIG.bituminousMaxHeight)).spreadHorizontally().repeat(CONFIG.bituminousVeinsPerkChunk));
-//    public static final ConfiguredFeature<?, ?> ANTHRACITE_ORE = create("anthracite_ore", Feature.ORE.configure(new OreFeatureConfig(ImmutableList.of(OreFeatureConfig.createTarget(OreFeatureConfig.Rules.STONE_ORE_REPLACEABLES, GAObjects.ANTHRACITE_ORE.getDefaultState())), CONFIG.anthraciteVeinSize)).uniformRange(YOffset.fixed(CONFIG.anthraciteMinHeight), YOffset.fixed(CONFIG.anthraciteMaxHeight)).spreadHorizontally().repeat(CONFIG.anthraciteVeinsPerkChunk));
-//
-//    /*
-//     * Registers the configured features
-//     */
-//    private static <FC extends FeatureConfig, F extends Feature<FC>, CF extends ConfiguredFeature<FC, F>> CF create(final String id, final CF feature) {
-//        final Identifier featureId = new Identifier(GeoActivity.MODID, id);
-//
-//        if (BuiltinRegistries.CONFIGURED_FEATURE.getIds().contains(featureId)) {
-//            GeoActivity.LOGGER.error("ConfiguredFeature ID: " + featureId + " already exists in registry.");
-//        }
-//        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, featureId, feature);
-//        return feature;
-//    }
-//
-//    /*
-//     * Adds the features and biome modifications to the world gen.
-//     */
-//    public static void init() {
-//        WORLD_GENERATOR.add(ModificationPhase.ADDITIONS, BiomeSelectors.foundInOverworld(), context -> context.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.UNDERGROUND_ORES, LIGNITE_ORE));
-//        WORLD_GENERATOR.add(ModificationPhase.ADDITIONS, BiomeSelectors.foundInOverworld(), context -> context.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.UNDERGROUND_ORES, BITUMINOUS_ORE));
-//        WORLD_GENERATOR.add(ModificationPhase.ADDITIONS, BiomeSelectors.foundInOverworld(), context -> context.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.UNDERGROUND_ORES, ANTHRACITE_ORE));
-//    }
 }

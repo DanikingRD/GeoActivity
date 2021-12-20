@@ -3,7 +3,7 @@ package geoactivity.common.registry;
 import geoactivity.common.event.handler.AttackBlockHandler;
 import geoactivity.common.event.handler.UseItemHandler;
 
-public class GAEvents {
+public final class GAEvents {
 
     public static void init() {
         AttackBlockHandler.EVENT.register(new AttackBlockHandler());

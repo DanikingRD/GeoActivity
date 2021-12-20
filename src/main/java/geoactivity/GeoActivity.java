@@ -40,7 +40,7 @@ public class GeoActivity implements ModInitializer {
 		GAFuels.init();
 		GABlockEntityTypes.init();
 		GARecipeTypes.init();
-		//GAConfiguredFeatures.init();
+		GAConfiguredFeatures.init();
 		LOGGER.info("Initialized!");
 	}
 

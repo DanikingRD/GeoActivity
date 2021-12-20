@@ -9,7 +9,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 
-public class GAMaterials {
+public final class GAMaterials {
 
     public static final ArmorMaterial ADVANCED_ARMOR = new ArmorMaterial() {
 
