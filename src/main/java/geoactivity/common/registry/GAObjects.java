@@ -39,6 +39,7 @@ public final class GAObjects {
     public static final Item GRAPHITE = register("graphite", new Item(settings()));
     public static final Item CARBON_FIBER = register("carbon_fiber", new Item(settings()));
     public static final Item CARBON_STICK = register("carbon_stick", new Item(settings()));
+    public static final Item REINFORCED_INGOT = register("reinforced_ingot", new Item(settings()));
     public static final Item SMALL_PRECIOUS_ALLOY_INGOT = register("small_precious_alloy_ingot", new Item(settings().rarity(Rarity.UNCOMMON)));
     //ores
     public static final Block LIGNITE_ORE = register("lignite_ore", new GAOreBlock(settings(Material.STONE, 3.0F, 3.0F).requiresTool(), UniformIntProvider.create(0, 2)));

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    " G ",
+    " I "
+  ],
+  "key": {
+    "G": {
+      "item": "gold_ingot"
+    },
+    "I": {
+      "item": "iron_ingot"
+    }
+  },
+  "result": {
+    "item": "geoactivity:reinforced_ingot"
+  }
+}

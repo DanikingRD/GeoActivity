@@ -1,0 +1,40 @@
+{
+  "category": "geoactivity:tools",
+  "name": "Reinforced",
+  "icon": "geoactivity:reinforced_ingot",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Reinforced Material is equivalent to diamond but it only has twice the durability of iron. "
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_ingot"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_sword",
+      "recipe2": "geoactivity:reinforced_pickaxe"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_axe",
+      "recipe2": "geoactivity:reinforced_shovel"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_hoe",
+      "recipe2": "geoactivity:reinforced_helmet"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_chestplate",
+      "recipe2": "geoactivity:reinforced_leggings"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_boots"
+    }
+  ]
+
+}

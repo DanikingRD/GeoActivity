@@ -1,20 +1,13 @@
 {
-  "type": "crafting_shaped",
-  "pattern": [
-    "iIi",
-    "g g"
-  ],
-  "key": {
-    "g": {
-      "item": "gold_ingot"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "geoactivity:reinforced_ingot"
     },
-    "I": {
+    {
       "item": "iron_helmet"
-    },
-    "i": {
-      "item": "iron_ingot"
     }
-  },
+  ],
   "result": {
     "item": "geoactivity:reinforced_helmet"
   }

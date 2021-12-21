@@ -1,0 +1,6 @@
+{
+  "name": "Coal Ores",
+  "description": "Geoactivity adds 3 new coal minerals:$(br2)Lignite, Bituminous and Anthracite Coal",
+  "icon": "geoactivity:deepslate_anthracite_ore",
+  "sortnum": 0
+}

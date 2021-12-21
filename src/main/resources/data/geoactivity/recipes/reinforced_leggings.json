@@ -1,21 +1,13 @@
 {
-  "type": "crafting_shaped",
-  "pattern": [
-    "iii",
-    "gIg",
-    "i i"
-  ],
-  "key": {
-    "i": {
-      "item": "iron_ingot"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "geoactivity:reinforced_ingot"
     },
-    "g": {
-      "item": "gold_ingot"
-    },
-    "I": {
+    {
       "item": "iron_leggings"
     }
-  },
+  ],
   "result": {
     "item": "geoactivity:reinforced_leggings"
   }

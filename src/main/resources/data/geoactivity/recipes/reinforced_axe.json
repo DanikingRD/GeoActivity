@@ -1,21 +1,13 @@
 {
-  "type": "crafting_shaped",
-  "pattern": [
-    "ii",
-    "iI",
-    " g"
-  ],
-  "key": {
-    "i": {
-      "item": "iron_ingot"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "geoactivity:reinforced_ingot"
     },
-    "I": {
+    {
       "item": "iron_axe"
-    },
-    "g": {
-      "item": "gold_ingot"
     }
-  },
+  ],
   "result": {
     "item": "geoactivity:reinforced_axe"
   }

