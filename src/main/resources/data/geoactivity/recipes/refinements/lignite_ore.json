@@ -1,0 +1,11 @@
+{
+  "type": "geoactivity:refinement",
+  "ingredient": {
+	"item": "geoactivity:lignite_ore"
+  },
+  "result": {
+    "item": "geoactivity:lignite_coal"
+  },
+  "time": 400,
+  "experience": 0.2
+}

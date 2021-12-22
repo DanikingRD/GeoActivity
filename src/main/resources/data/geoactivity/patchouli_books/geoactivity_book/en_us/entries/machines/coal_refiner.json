@@ -1,0 +1,35 @@
+{
+  "category": "geoactivity:machines",
+  "name": "Coal Refiner",
+  "icon": "geoactivity:coal_refiner",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Coal Refiner will process the coal into Graphite.$(br2)It needs some coal fuel to work and each operation takes 20 seconds."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:coal_refiner"
+    },
+    {
+      "type": "geoactivity:refinement",
+      "recipe": "geoactivity:refinements/vanilla_coal",
+      "text": "Vanilla coal gives you one graphite."
+    },
+    {
+      "type": "geoactivity:refinement",
+      "recipe": "geoactivity:refinements/lignite_coal",
+      "text": "Lignite Coal gives you one graphite."
+    },
+    {
+      "type": "geoactivity:refinement",
+      "recipe": "geoactivity:refinements/bituminous_coal",
+      "text": "Bituminous Coal gives you 6 graphite."
+    },
+    {
+      "type": "geoactivity:refinement",
+      "recipe": "geoactivity:refinements/anthracite_coal",
+      "text": "Anthracite Coal gives you 16 graphite"
+    }
+  ]
+}

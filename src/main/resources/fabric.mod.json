@@ -19,13 +19,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "geoactivity.GeoActivity"
+      "daniking.geoactivity.GeoActivity"
     ],
     "client": [
-      "geoactivity.GeoActivityClient"
+      "daniking.geoactivity.GeoActivityClient"
     ],
     "rei_plugins": [
-      "geoactivity.client.integration.rei.GAREIPlugin"
+      "daniking.geoactivity.client.integration.rei.GAREIPlugin"
     ]
 
   },
@@ -34,10 +34,11 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.12.12",
     "fabric": "*",
     "minecraft": "1.18.x",
-    "cloth-config2": "*",
+    "cloth-config2": ">=6.1.48",
+    "patchouli": ">=1.18-61",
     "java": ">=17"
   }
 }

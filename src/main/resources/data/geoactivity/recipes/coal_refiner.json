@@ -1,26 +1,22 @@
 {
   "type": "crafting_shaped",
   "pattern": [
-    "gfg",
-    "ici",
-    "gfg"
+    "CCC",
+    "CFC",
+    "AAA"
   ],
   "key": {
-    "g": {
-      "item": "gold_ingot"
+    "C": {
+      "tag": "coals"
     },
-    "i": {
-      "item": "iron_ingot"
-    },
-    "f": {
+    "F": {
       "item": "furnace"
     },
-    "c": {
-      "tag": "coals"
+    "A": {
+      "item": "geoactivity:reinforced_ingot"
     }
   },
   "result": {
     "item": "geoactivity:coal_refiner"
-
   }
 }

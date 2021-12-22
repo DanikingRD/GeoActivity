@@ -1,0 +1,42 @@
+{
+  "processor": "daniking.geoactivity.client.integration.patchouli.RefinementProcessor",
+  "components": [
+    {
+      "type": "patchouli:image",
+      "image": "geoactivity:textures/gui/patchouli/crafting.png",
+      "x": 16,
+      "y": 16,
+      "u": 0,
+      "v": 0,
+      "texture_width": 256,
+      "texture_height": 256,
+      "width": 68,
+      "height": 24,
+      "scale": 1
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#ingredient0",
+      "x": 20,
+      "y": 22
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#output",
+      "x": 66,
+      "y": 22
+    },
+    {
+      "type": "patchouli:text",
+      "text": "#text",
+      "x": 0,
+      "y": 58
+    },
+    {
+      "type": "patchouli:header",
+      "text": "#header",
+      "x": -1,
+      "y": 0
+    }
+  ]
+}
