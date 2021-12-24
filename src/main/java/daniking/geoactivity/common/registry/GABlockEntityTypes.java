@@ -12,7 +12,7 @@ import net.minecraft.util.registry.Registry;
 public final class GABlockEntityTypes {
 
     public static final BlockEntityType<?> COAL_REFINER = FabricBlockEntityTypeBuilder.create(CoalRefinerBlockEntity::new, GAObjects.COAL_REFINER).build();
-    public static final BlockEntityType<?> CRAFTING_MACHINE = FabricBlockEntityTypeBuilder.create(CraftingMachineBlockEntity::new, GAObjects.CRAFTING_MACHINE).build();
+    public static final BlockEntityType<CraftingMachineBlockEntity> CRAFTING_MACHINE = FabricBlockEntityTypeBuilder.create(CraftingMachineBlockEntity::new, GAObjects.CRAFTING_MACHINE).build();
 
     public static  void register(String id, BlockEntityType<? extends BlockEntity> blockEntity) {
         Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(GeoActivity.MODID, id), blockEntity);

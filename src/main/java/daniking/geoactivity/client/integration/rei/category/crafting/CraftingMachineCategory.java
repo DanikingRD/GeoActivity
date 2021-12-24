@@ -29,7 +29,7 @@ import java.util.List;
 public class CraftingMachineCategory implements DisplayCategory<Display> {
 
     public static final EntryStack<ItemStack> ICON = EntryStacks.of(GAObjects.CRAFTING_MACHINE);
-    public static final Text TITLE = new TranslatableText("rei.daniking.geoactivity.crafting_machine");
+    public static final Text TITLE = new TranslatableText("rei.geoactivity.crafting_machine");
 
     @Override
     public List<Widget> setupDisplay(Display display, Rectangle bounds) {

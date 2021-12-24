@@ -1,0 +1,15 @@
+{
+  "category": "geoactivity:machines",
+  "name": "Crafting Machine",
+  "icon": "geoactivity:crafting_machine",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Crafting machine is used for advanced crafting such as chargeable armor, tools and perks!."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:crafting_machine"
+    }
+  ]
+}

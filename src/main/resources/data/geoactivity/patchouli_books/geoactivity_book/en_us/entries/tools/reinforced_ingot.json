@@ -1,0 +1,15 @@
+{
+  "category": "geoactivity:tools",
+  "name": "Reinforced Ingot",
+  "icon": "geoactivity:reinforced_ingot",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Reinforced Ingot is a combination between Iron and Gold.$(br2)You can use it to craft reinforced tools and armors. "
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_ingot"
+    }
+  ]
+}

@@ -27,11 +27,6 @@ public class CoalRefinerScreenHandler extends ScreenHandlerBase {
                 .build();
     }
 
-    public int getCookProgress() {
-        int i = this.propertyDelegate.get(2);
-        int j = this.propertyDelegate.get(3);
-        return j != 0 && i != 0 ? i * 24 / j : 0;
-    }
     public boolean isBurning() {
         return this.propertyDelegate.get(0) > 0;
     }

@@ -48,7 +48,9 @@ public final class GAObjects {
     public static final Block DEEPSLATE_BITUMINOUS_ORE = register("deepslate_bituminous_ore", new GAOreBlock(settings(Material.STONE,  4.5F, 3.0F).requiresTool().sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 5)));
     public static final Block ANTHRACITE_ORE = register("anthracite_ore", new GAOreBlock(settings(Material.STONE, 3.0F, 3.0F).requiresTool(), UniformIntProvider.create(3, 7)));
     public static final Block DEEPSLATE_ANTHRACITE_ORE = register("deepslate_anthracite_ore", new GAOreBlock(settings(Material.STONE,  4.5F, 3.0F).requiresTool().sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(3, 7)));
-
+    //machines
+    public static final Block COAL_REFINER = register("coal_refiner", new CoalRefinerBlock(settings(Material.METAL, 3.0F, 3.5F).requiresTool().sounds(BlockSoundGroup.STONE).luminance(state -> state.get(CoalRefinerBlock.LIT) ? 13: 0)));
+    public static final Block CRAFTING_MACHINE = register("crafting_machine", new CraftingMachineBlock(settings(Material.METAL, 4.0F, 5.0F).requiresTool().sounds(BlockSoundGroup.STONE)));
     //misc
     public static final Block HARDENED_GLASS = register("hardened_glass", new GlassBlock(settings(Material.GLASS, 20.0F, 130.0F).requiresTool().nonOpaque()));
     public static final Block GRAPHITE_BASE = register("graphite_base", new GATransparentBlock(settings(Material.STONE, 3.0F, 15.0F).requiresTool().nonOpaque()));
@@ -74,9 +76,7 @@ public final class GAObjects {
     public static final Item ADVANCED_CHESTPLATE = register("advanced_chestplate", new AdvancedArmorItem(GAMaterials.ADVANCED_ARMOR, EquipmentSlot.CHEST, settings()));
     public static final Item ADVANCED_LEGGINGS = register("advanced_leggings", new AdvancedArmorItem(GAMaterials.ADVANCED_ARMOR, EquipmentSlot.LEGS, settings()));
     public static final Item ADVANCED_BOOTS = register("advanced_boots", new AdvancedArmorItem(GAMaterials.ADVANCED_ARMOR, EquipmentSlot.FEET, settings()));
-    //machines
-    public static final Block COAL_REFINER = register("coal_refiner", new CoalRefinerBlock(settings(Material.METAL, 3.0F, 3.5F).requiresTool().sounds(BlockSoundGroup.STONE).luminance(state -> state.get(CoalRefinerBlock.LIT) ? 13: 0)));
-    public static final Block CRAFTING_MACHINE = register("crafting_machine", new CraftingMachineBlock(settings(Material.METAL, 3.0F, 15.0F).requiresTool().sounds(BlockSoundGroup.STONE)));
+
     //book
     public static final Item GEOACTIVITY_BOOK = register("geoactivity_book", new GABookItem(settings().maxCount(1)));
 

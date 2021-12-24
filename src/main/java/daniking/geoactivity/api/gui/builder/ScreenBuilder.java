@@ -30,22 +30,24 @@ public final class ScreenBuilder {
     public void drawREIButton(MatrixStack matrixStack, final int posX,final int posY) {
         if (FabricLoader.getInstance().isModLoaded("roughlyenoughitems")) {
             this.bindTexture();
-            this.parent.drawTexture(matrixStack, posX, posY, 177, 0, 13, 13);
+            this.parent.drawTexture(matrixStack, posX, posY, 0, 150, 13, 13);
         }
     }
 
-    public void drawContainer3x3(final MatrixStack matrixStack, final int posX, final int posY) {
+    public void drawContainer3x3(final MatrixStack matrixStack, final int posX, final int posY, SlotType type) {
         this.bindTexture();
         for (int x = 0; x < 3; ++x) {
             for (int y = 0; y < 3; ++y) {
-                this.parent.drawTexture(matrixStack, posX + y * 18, posY + x * 18, 238, 0, 18, 18);
+                switch (type) {
+                    case DEFAULT -> this.parent.drawTexture(matrixStack, posX + y * 18, posY + x * 18, 238, 0, 18, 18);
+                    case DIAMOND ->  this.parent.drawTexture(matrixStack, posX + y * 18, posY + x * 18, 220, 0, 18, 18);
+                }
             }
         }
     }
 
     public void drawPlayerSlots(final MatrixStack matrixStack, final int posX, final int posY) {
         this.bindTexture();
-
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 9; y++) {
                 this.parent.drawTexture(matrixStack, posX + y * 18, posY + x * 18, 238, 0, 18, 18);
@@ -57,14 +59,20 @@ public final class ScreenBuilder {
         }
     }
 
-    public void drawSlot(final MatrixStack matrixStack, final int posX, final int posY) {
+    public void drawSlot(final MatrixStack matrixStack, final int posX, final int posY, SlotType type) {
         this.bindTexture();
-        this.parent.drawTexture(matrixStack, posX, posY, 238, 0, 18, 18);
+        switch (type) {
+            case DEFAULT -> this.parent.drawTexture(matrixStack, posX, posY, 238, 0, 18, 18);
+            case DIAMOND -> this.parent.drawTexture(matrixStack, posX, posY, 220, 0, 18, 18);
+        }
     }
 
-    public void drawOutputSlot(final MatrixStack matrixStack, final int posX, final int posY) {
+    public void drawOutputSlot(final MatrixStack matrixStack, final int posX, final int posY, SlotType type) {
         this.bindTexture();
-        this.parent.drawTexture(matrixStack, posX, posY, 150, 0, 26,26);
+        switch (type) {
+            case DEFAULT ->  this.parent.drawTexture(matrixStack, posX, posY, 150, 0, 26,26);
+            case DIAMOND -> this.parent.drawTexture(matrixStack, posX, posY, 176, 0, 26,26);
+        }
     }
 
     public void drawSmeltingProgress(GuiBase<?> base, MatrixStack matrixStack, int posX, int posY, int progress, int maxProgress, int mouseX, int mouseY) {
@@ -105,6 +113,11 @@ public final class ScreenBuilder {
 
     public void bindTexture(final Identifier texture) {
         RenderSystem.setShaderTexture(0, texture);
+    }
+
+    public enum SlotType {
+        DEFAULT,
+        DIAMOND
     }
 
 }

@@ -52,7 +52,7 @@ public class GAREIPlugin implements REIClientPlugin {
     @Override
     public void registerScreens(ScreenRegistry registry) {
         registry.registerContainerClickArea(new Rectangle(129, 61, 13, 13), CoalRefinerScreen.class, REFINEMENT);
+        registry.registerContainerClickArea(new Rectangle(125, 60, 13, 13), CraftingMachineScreen.class, CRAFTING_MACHINE);
         registry.registerContainerClickArea(new Rectangle(77, 48, 22, 16), AutoStoneBuilderScreen.class, CONVERSION);
-        registry.registerContainerClickArea(new Rectangle(64, 36, 76, 16), CraftingMachineScreen.class, CRAFTING_MACHINE);
     }
 }

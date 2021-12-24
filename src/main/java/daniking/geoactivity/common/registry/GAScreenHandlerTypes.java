@@ -18,4 +18,8 @@ public final class GAScreenHandlerTypes {
     public static <T extends ScreenHandler> ScreenHandlerType<T> simple(final String name, final ScreenHandlerRegistry.SimpleClientHandlerFactory<T> factory) {
         return ScreenHandlerRegistry.registerSimple(new Identifier(GeoActivity.MODID, name), factory);
     }
+
+    public static <T extends ScreenHandler> ScreenHandlerType<T> extended(final String name, final ScreenHandlerRegistry.ExtendedClientHandlerFactory<T> factory) {
+        return ScreenHandlerRegistry.registerExtended(new Identifier(GeoActivity.MODID, name), factory);
+    }
 }

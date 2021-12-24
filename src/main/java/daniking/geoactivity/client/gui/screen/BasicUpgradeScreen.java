@@ -1,6 +1,7 @@
 package daniking.geoactivity.client.gui.screen;
 
 import daniking.geoactivity.api.gui.GuiBase;
+import daniking.geoactivity.api.gui.builder.ScreenBuilder;
 import daniking.geoactivity.client.gui.screen.handler.BasicUpgradeScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,8 +19,8 @@ public class BasicUpgradeScreen extends GuiBase<BasicUpgradeScreenHandler> {
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
         super.drawBackground(matrices, delta, mouseX, mouseY);
-        this.builder().drawSlot(matrices, this.left() + 79, this.top() + 33);
-        this.builder().drawSlot(matrices, this.left() + 8, this.top() + 8);
+        this.builder().drawSlot(matrices, this.left() + 79, this.top() + 33, ScreenBuilder.SlotType.DEFAULT);
+        this.builder().drawSlot(matrices, this.left() + 8, this.top() + 8, ScreenBuilder.SlotType.DEFAULT);
     }
 
     @Override

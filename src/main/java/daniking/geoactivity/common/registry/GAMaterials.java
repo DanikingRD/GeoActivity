@@ -158,7 +158,7 @@ public final class GAMaterials {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.EMPTY;
+            return Ingredient.ofItems(GAObjects.REINFORCED_INGOT);
         }
     };
 }

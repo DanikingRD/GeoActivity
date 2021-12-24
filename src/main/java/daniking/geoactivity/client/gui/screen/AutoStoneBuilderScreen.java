@@ -1,6 +1,7 @@
 package daniking.geoactivity.client.gui.screen;
 
 import daniking.geoactivity.api.gui.GuiBase;
+import daniking.geoactivity.api.gui.builder.ScreenBuilder;
 import daniking.geoactivity.client.gui.screen.handler.AutoStoneBuilderScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,9 +19,9 @@ public class AutoStoneBuilderScreen extends GuiBase<AutoStoneBuilderScreenHandle
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
         super.drawBackground(matrices, delta, mouseX, mouseY);
-        this.builder().drawSlot(matrices, this.left() + 79, this.top() + 24);
-        this.builder().drawSlot(matrices, this.left() + 52, this.top() + 48);
-        this.builder().drawSlot(matrices, this.left() + 106, this.top() + 48);
+        this.builder().drawSlot(matrices, this.left() + 79, this.top() + 24, ScreenBuilder.SlotType.DEFAULT);
+        this.builder().drawSlot(matrices, this.left() + 52, this.top() + 48, ScreenBuilder.SlotType.DEFAULT);
+        this.builder().drawSlot(matrices, this.left() + 106, this.top() + 48, ScreenBuilder.SlotType.DEFAULT);
         this.builder().drawSmeltingProgress(this, matrices, this.left() + 77, this.top() + 48, 0, 23, mouseX, mouseY);
     }
 

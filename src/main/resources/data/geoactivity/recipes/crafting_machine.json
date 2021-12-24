@@ -1,25 +1,25 @@
 {
   "type": "crafting_shaped",
   "pattern": [
-    "GRG",
-    "DBD",
-    "GQG"
+    "DCD",
+    "ABA",
+    "SSS"
   ],
   "key": {
-    "R": {
-      "item": "geoactivity:coal_refiner"
+    "D": {
+      "item": "diamond"
+    },
+    "C": {
+      "item": "crafting_table"
+    },
+    "A": {
+      "item": "geoactivity:reinforced_ingot"
     },
     "B": {
       "item": "geoactivity:graphite_base"
     },
-    "D": {
-      "item": "diamond"
-    },
-    "G": {
-      "item": "glowstone_dust"
-    },
-    "Q": {
-      "item": "quartz"
+    "S": {
+      "item": "smooth_stone"
     }
   },
   "result": {

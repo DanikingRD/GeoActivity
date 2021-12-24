@@ -3,7 +3,6 @@ package daniking.geoactivity.common.block.entity;
 import daniking.geoactivity.api.block.entity.IMachineExperienceHandler;
 import daniking.geoactivity.client.gui.screen.handler.CoalRefinerScreenHandler;
 import daniking.geoactivity.common.block.CoalRefinerBlock;
-import daniking.geoactivity.common.item.util.GAChargeItem;
 import daniking.geoactivity.common.recipe.RefinementRecipe;
 import daniking.geoactivity.common.registry.GABlockEntityTypes;
 import daniking.geoactivity.common.registry.GARecipeTypes;
@@ -18,6 +17,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -201,17 +201,17 @@ public class CoalRefinerBlockEntity extends GAMachineBlockEntity implements IMac
     public int[] getAvailableSlots(Direction side) {
         return new int[] {0, 1, 2};
     }
-    //TODO: use tags for inserting stuff.
+
 
     @Override
     public boolean canInsert(int slot, ItemStack stack, Direction dir) {
         if (slot == 0) {
-            return this.getItemBurnTime(stack) > 0;
+            return this.getItemBurnTime(stack) > 0;//fuel slot
+        } else if (slot == 1) {
+            return stack.isIn(ItemTags.COALS) && stack.getItem() != Items.CHARCOAL; //input
+        } else {
+            return false;//output
         }
-        if (slot == 1) {
-            return stack.getItem() instanceof GAChargeItem || stack.getItem() == Items.COAL;
-        }
-        return false;
     }
 
     @Override

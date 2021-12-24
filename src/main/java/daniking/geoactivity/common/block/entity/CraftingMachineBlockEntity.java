@@ -1,198 +1,236 @@
 package daniking.geoactivity.common.block.entity;
 
 import daniking.geoactivity.client.gui.screen.handler.CraftingMachineScreenHandler;
-import daniking.geoactivity.common.recipe.crafting.CraftingMachineSmeltingRecipe;
+import daniking.geoactivity.common.recipe.crafting.IMachineCrafting;
 import daniking.geoactivity.common.registry.GABlockEntityTypes;
-import daniking.geoactivity.common.registry.GAObjects;
 import daniking.geoactivity.common.registry.GARecipeTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.CraftingResultInventory;
-import net.minecraft.item.Item;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 public class CraftingMachineBlockEntity extends GAMachineBlockEntity {
 
-    private final PropertyDelegate propertyDelegate;
-    private int burnTime;
-    private int fuelTime;
-    private int cookTime;
-    private int cookTimeTotal;
+    private int progress;
+    private final int outputIndex = 9;
+    private int maxProgress;
+    private final PropertyDelegate delegate;
 
-    private final int fuelSlot = 0;
-    private final int inputSlot = 1;
-    private final int perkSlot = 2;
-
-    private final CraftingResultInventory resultInventory = new CraftingResultInventory();
+    private CraftingInventory craftingInventory = null;
+    private IMachineCrafting lastRecipe = null;
 
     public CraftingMachineBlockEntity(BlockPos pos, BlockState state) {
-        super(GABlockEntityTypes.CRAFTING_MACHINE, 3, pos, state);
-        this.propertyDelegate = new PropertyDelegate() {
+        super(GABlockEntityTypes.CRAFTING_MACHINE, 10, pos, state);
+        this.delegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
                 return switch (index) {
-                    case 0 -> CraftingMachineBlockEntity.this.burnTime;
-                    case 1 -> CraftingMachineBlockEntity.this.fuelTime;
-                    case 2 -> CraftingMachineBlockEntity.this.cookTime;
-                    case 3 -> CraftingMachineBlockEntity.this.cookTimeTotal;
+                    case 0 -> CraftingMachineBlockEntity.this.progress;
+                    case 1 -> CraftingMachineBlockEntity.this.maxProgress;
                     default -> 0;
                 };
             }
+
+            @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0 -> CraftingMachineBlockEntity.this.burnTime = value;
-                    case 1 -> CraftingMachineBlockEntity.this.fuelTime = value;
-                    case 2 -> CraftingMachineBlockEntity.this.cookTime = value;
-                    case 3 -> CraftingMachineBlockEntity.this.cookTimeTotal = value;
+                    case 0 -> CraftingMachineBlockEntity.this.progress = value;
+                    case 1 -> CraftingMachineBlockEntity.this.maxProgress = value;
                 }
             }
+
             @Override
             public int size() {
-                return 4;
+                return 2;
             }
         };
     }
 
-    protected int getItemBurnTime(ItemStack stack) {
-        if (stack.isEmpty()) {
-            return 0;
+    @Override
+    public NbtCompound toInitialChunkDataNbt() {
+        NbtCompound nbt = super.toInitialChunkDataNbt();
+        writeNbt(nbt);
+        return nbt;
+    }
+
+    @Nullable
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        if (this.world != null && world instanceof ServerWorld world)  {
+            world.getChunkManager().markForUpdate(pos);
         }
-        final Item item = stack.getItem();
-        if (item == Items.COAL_BLOCK) {
-            return 80;
-        }
-        if (item == GAObjects.LIGNITE_COAL) {
-            return 160;
-        }
-        if (item == GAObjects.BITUMINOUS_COAL) {
-            return 320;
-        }
-        if (item == GAObjects.ANTHRACITE_COAL) {
-            return 480;
-        }
-        return 0;
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        this.burnTime = nbt.getShort("BurnTime");
-        this.cookTime = nbt.getShort("CookTime");
-        this.cookTimeTotal = nbt.getShort("CookTimeTotal");
-        this.fuelTime = this.getItemBurnTime(this.getStack(fuelSlot));
-
+        this.progress = nbt.getShort("Progress");
+        this.maxProgress = nbt.getShort("MaxProgress");
     }
 
     @Override
     public void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
-        nbt.putShort("BurnTime", (short)this.burnTime);
-        nbt.putShort("CookTime", (short)this.cookTime);
-        nbt.putShort("CookTimeTotal", (short)this.cookTimeTotal);
+        nbt.putShort("Progress", (short)this.progress);
+        nbt.putShort("MaxProgress", (short)this.maxProgress);
     }
 
-    private boolean isBurning() {
-        return this.burnTime > 0;
-    }
-
-    public static void tick(World world, BlockPos pos, BlockState state, CraftingMachineBlockEntity blockEntity) {
-        if (!world.isClient) {
-            boolean dirty = false;
-            if (blockEntity.isBurning()) {
-                --blockEntity.burnTime;
+    public static void tick(World world, CraftingMachineBlockEntity blockEntity) {
+        if (world != null && !world.isClient) {
+            final IMachineCrafting recipe = blockEntity.getCurrentRecipe();
+            if (recipe == null) {
+                blockEntity.progress = 0;
+                return;
+            }
+            blockEntity.maxProgress = 100;
+            if (blockEntity.progress >= blockEntity.maxProgress) {
+                if (blockEntity.craft(recipe)) {
+                    blockEntity.progress = 0;
+                }
             } else {
-                //if no fuel remaining, decrement progress
-                if (blockEntity.cookTime > 0) {
-                    blockEntity.cookTime = MathHelper.clamp((blockEntity.cookTime - 2), 0, blockEntity.cookTimeTotal);
+                if (blockEntity.canCraft(recipe)) {
+                    blockEntity.progress++;
+                } else {
+                    blockEntity.progress = 0;
                 }
             }
-            final CraftingMachineSmeltingRecipe type = world.getRecipeManager()
-                    .listAllOfType(GARecipeTypes.CRAFTING_MACHINE_SMELTING_RECIPE_TYPE)
-                    .stream()
-                    .filter(recipe -> recipe.input().test(blockEntity.getStack(blockEntity.inputSlot)) && recipe.perk().test(blockEntity.getStack(blockEntity.perkSlot)))
-                    .findFirst()
-                    .orElse(null);
-            if (type != null) {
-                blockEntity.cookTimeTotal = type.time();
-                if (!blockEntity.isBurning() && canUpgrade(blockEntity, type)) {
-                    blockEntity.burnTime = blockEntity.getItemBurnTime(blockEntity.getStack(blockEntity.fuelSlot));
-                    blockEntity.fuelTime = blockEntity.burnTime;
-                    if (blockEntity.isBurning()) {
-                        dirty = true;
-                        final ItemStack fuelStack = blockEntity.getStack(blockEntity.fuelSlot);
-                        if (fuelStack.getItem().hasRecipeRemainder()) {
-                            blockEntity.setStack(blockEntity.fuelSlot, new ItemStack(fuelStack.getItem().getRecipeRemainder()));
-                        } else if (fuelStack.getCount() > 1) {
-                            fuelStack.decrement(1);
-                        } else if (fuelStack.getCount() == 1) {
-                            blockEntity.setStack(blockEntity.fuelSlot, ItemStack.EMPTY);
+        }
+    }
+
+    private boolean craft(IMachineCrafting recipe) {
+        if (recipe == null) {
+            return false;
+        } else if (!canCraft(recipe)) {
+            return false;
+        } else {
+            for (int i = 0; i < recipe.getIngredients().size(); i++) {
+                final DefaultedList<Ingredient> ingredients = recipe.getIngredients();
+                final Ingredient ingredient = ingredients.get(i);
+                final ItemStack stack = this.getStack(i);
+                if (ingredient.test(stack)) {
+                    stack.decrement(1);
+                } else {
+                    //we repeat the operation
+                    for (int j = 0; j < this.size()-1; j++) {
+                        System.out.println(this.size()-1);
+                        final ItemStack remainingStack = this.getStack(j);
+                        if (ingredient.test(remainingStack)) {
+                            remainingStack.decrement(1);
+                            break;
                         }
                     }
                 }
-                if (blockEntity.isBurning() && canUpgrade(blockEntity, type)) {
-                    ++blockEntity.cookTime;
-                    if (blockEntity.cookTime == blockEntity.cookTimeTotal) {
-                        blockEntity.cookTime = 0;
-                        blockEntity.cookTimeTotal = type.time();
-                        doUpgrade(blockEntity, type);
-                        dirty = true;
+            }
+            final ItemStack output = this.getStack(this.outputIndex);
+            final ItemStack result = recipe.craft(updateCraftingInventory());
+            if (output.isEmpty()) {
+                this.setStack(this.outputIndex, result.copy());
+            } else {
+                output.increment(recipe.getOutput().getCount());
+            }
+            return true;
+        }
+    }
+
+    @Nullable
+    public IMachineCrafting getCurrentRecipe() {
+        if (this.world == null) {
+            return null;
+        }
+        final CraftingInventory crafting = updateCraftingInventory();
+        if (crafting.isEmpty()) {
+            return null;
+        } else if (this.lastRecipe != null && lastRecipe.matches(crafting, world)) {
+            return lastRecipe;
+        } else {
+            final Optional<IMachineCrafting> recipe = world.getRecipeManager().getFirstMatch(GARecipeTypes.MACHINE_CRAFTING_RECIPE, crafting, this.world);
+            if (recipe.isPresent()) {
+                lastRecipe = recipe.get();
+                return lastRecipe;
+            }
+            return null;
+
+        }
+    }
+
+    public CraftingInventory updateCraftingInventory() {
+        if (this.craftingInventory == null) {
+            this.craftingInventory = new CraftingInventory(new ScreenHandler(null, -1) {
+                @Override
+                public boolean canUse(PlayerEntity player) {
+                    return false;
+                }
+            }, 3, 3);
+        }
+        for (int i = 0; i < 9; i++) {
+            this.craftingInventory.setStack(i, this.getStack(i));
+        }
+        return this.craftingInventory;
+    }
+
+    //checks whether the result stack count fits in the output space
+    private boolean fitsOutputSpace(ItemStack output) {
+        final ItemStack stack = this.getStack(this.outputIndex);
+        if (stack.isEmpty()) {
+            return true;
+        } else if (ItemStack.areItemsEqualIgnoreDamage(stack, output)) {
+            return stack.getMaxCount() > stack.getCount() + output.getCount();
+        } else {
+            return false;
+        }
+    }
+
+    private boolean canCraft(IMachineCrafting recipe) {
+        if (this.world == null) {
+            return false;
+        } else if (recipe == null) {
+            return false;
+        } else {
+            final CraftingInventory crafting = this.updateCraftingInventory();
+            if (crafting.isEmpty()) {
+                return false;
+            } else if (!recipe.matches(crafting, this.world)) {
+                return false;
+            } else if (!fitsOutputSpace(recipe.getOutput())){
+                return false;
+            } else {
+                final DefaultedList<ItemStack> remainingStacks = recipe.getRemainder(crafting);
+                for (var stack : remainingStacks) {
+                    if (!stack.isEmpty())  {
+                        return false;
                     }
                 }
-                if (dirty) {
-                    blockEntity.markDirty();
-                }
-            } else {
-                blockEntity.cookTime = 0;
+                return true;
             }
         }
     }
 
-    private static boolean canUpgrade(CraftingMachineBlockEntity entity, CraftingMachineSmeltingRecipe recipe) {
-        if (entity == null || recipe == null) {
-            return false;
-        }
-        final ItemStack inputStack = entity.getStack(entity.inputSlot);
-        final ItemStack perkStack = entity.getStack(entity.perkSlot);
-        if (inputStack.isEmpty() || perkStack.isEmpty()) {
-            return false;
-        }
-        final ItemStack outputStack = entity.getResultInventory().getStack(0);
-        return outputStack.isEmpty();
-    }
-
-    private static void doUpgrade(CraftingMachineBlockEntity entity, CraftingMachineSmeltingRecipe recipe) {
-        if (recipe == null || !canUpgrade(entity, recipe)) {
-            return;
-        }
-        final ItemStack recipeOutput = recipe.getOutput().copy();
-        final ItemStack outputStack = entity.getResultInventory().getStack(0);
-        if (outputStack.isEmpty()) {
-            entity.getResultInventory().setStack(0, recipeOutput);
-        }
-        entity.getStack(entity.inputSlot).decrement(1);
-        entity.getStack(entity.perkSlot).decrement(1);
-    }
-
-    @Nullable
-    @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new CraftingMachineScreenHandler(syncId, inv, this, this.resultInventory, this.propertyDelegate, ScreenHandlerContext.create(this.world, this.pos));
-    }
-
+    //no impl for SidedInventory
     @Override
     public int[] getAvailableSlots(Direction side) {
-        return new int[0];
+        return new int[] {};
     }
 
     @Override
@@ -205,7 +243,9 @@ public class CraftingMachineBlockEntity extends GAMachineBlockEntity {
         return false;
     }
 
-    public CraftingResultInventory getResultInventory() {
-        return resultInventory;
+    @Nullable
+    @Override
+    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+        return new CraftingMachineScreenHandler(syncId, inv, this, this.delegate);
     }
 }

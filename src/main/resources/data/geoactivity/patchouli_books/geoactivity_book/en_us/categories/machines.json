@@ -1,6 +1,6 @@
 {
   "name": "Machines",
   "description": "Instructions on how to use the machines of geoactivity.",
-  "icon": "geoactivity:coal_refiner",
+  "icon": "geoactivity:crafting_machine",
   "sortnum": 2
 }

@@ -1,0 +1,26 @@
+{
+  "category": "geoactivity:tools",
+  "name": "Reinforced Tools",
+  "icon": "geoactivity:reinforced_pickaxe",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A Reinforced Tool has twice the durability of Iron and has the efficiency of a diamond tool. "
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_sword",
+      "recipe2": "geoactivity:reinforced_pickaxe"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_axe",
+      "recipe2": "geoactivity:reinforced_shovel"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_hoe"
+    }
+  ]
+
+}

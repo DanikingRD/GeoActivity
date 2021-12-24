@@ -1,6 +1,7 @@
 package daniking.geoactivity.client.gui.screen;
 
 import daniking.geoactivity.api.gui.GuiBase;
+import daniking.geoactivity.api.gui.builder.ScreenBuilder;
 import daniking.geoactivity.client.gui.screen.handler.ReinforcedMinerScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,6 +19,6 @@ public class ReinforcedMinerScreen extends GuiBase<ReinforcedMinerScreenHandler>
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
         super.drawBackground(matrices, delta, mouseX, mouseY);
-        this.builder().drawSlot(matrices, this.left() + 79, this.top() + 33);
+        this.builder().drawSlot(matrices, this.left() + 79, this.top() + 33, ScreenBuilder.SlotType.DEFAULT);
     }
 }

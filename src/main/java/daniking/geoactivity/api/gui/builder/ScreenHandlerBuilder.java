@@ -7,11 +7,8 @@ import daniking.geoactivity.client.gui.screen.handler.slot.GAOutputSlot;
 import daniking.geoactivity.client.gui.screen.handler.slot.GASlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.screen.slot.Slot;
 import org.apache.commons.lang3.Range;
 
@@ -46,10 +43,6 @@ public final class ScreenHandlerBuilder {
         return this;
     }
 
-    public ScreenHandlerBuilder craftingOutput(final CraftingInventory craftingInventory, final CraftingResultInventory resultInventory, final int index, final int posX, final int posY) {
-        this.parent.addSlot(new CraftingResultSlot(this.player, craftingInventory, resultInventory, index, posX, posY));
-        return this;
-    }
 
     public ScreenHandlerBuilder charge(final int posX, final int posY) {
         this.parent.addSlot(new ChargeSlot(this.inventory, Rechargeable.CHARGE_SLOT_INDEX, posX, posY));

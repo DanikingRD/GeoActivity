@@ -21,7 +21,7 @@ import java.util.function.Predicate;
 
 public abstract class GAMachineBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, SidedInventory {
 
-    private final DefaultedList<ItemStack> inventory;
+    private DefaultedList<ItemStack> inventory;
 
     public GAMachineBlockEntity(final BlockEntityType<?> type, final int size, final BlockPos pos, final BlockState state) {
         super(type, pos, state);
@@ -44,6 +44,7 @@ public abstract class GAMachineBlockEntity extends BlockEntity implements NamedS
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);//updates the inventory
         Inventories.readNbt(nbt, this.inventory);
     }
     @Override

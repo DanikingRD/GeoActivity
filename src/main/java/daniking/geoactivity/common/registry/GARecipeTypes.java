@@ -2,16 +2,13 @@ package daniking.geoactivity.common.registry;
 
 import daniking.geoactivity.GeoActivity;
 import daniking.geoactivity.common.recipe.ConversionRecipe;
-import daniking.geoactivity.common.recipe.CraftingExtendedSerializer;
-import daniking.geoactivity.common.recipe.crafting.CraftingMachineShapedRecipe;
 import daniking.geoactivity.common.recipe.RefinementRecipe;
+import daniking.geoactivity.common.recipe.crafting.CraftingMachineShapedRecipe;
 import daniking.geoactivity.common.recipe.crafting.CraftingMachineShapelessRecipe;
-import daniking.geoactivity.common.recipe.crafting.CraftingMachineSmeltingRecipe;
 import daniking.geoactivity.common.recipe.crafting.IMachineCrafting;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -25,12 +22,11 @@ public final class GARecipeTypes {
 
     public static final RecipeSerializer<RefinementRecipe> REFINEMENT_RECIPE_SERIALIZER = register("refinement", new  RefinementRecipe.Serializer());
     public static final RecipeType<RefinementRecipe> REFINEMENT_RECIPE_TYPE = register("refinement");
-    public static final RecipeSerializer<ShapedRecipe> CRAFTING_EXTENDED_RECIPE_SERIALIZER = register("crafting_extended", new CraftingExtendedSerializer());
+
     public static final RecipeSerializer<CraftingMachineShapedRecipe> CRAFTING_MACHINE_SHAPED_RECIPE_SERIALIZER = register("crafting_machine_shaped", new CraftingMachineShapedRecipe.Serializer());
     public static final RecipeSerializer<CraftingMachineShapelessRecipe> CRAFTING_MACHINE_SHAPELESS_RECIPE_SERIALIZER = register("crafting_machine_shapeless", new CraftingMachineShapelessRecipe.Serializer());
     public static final RecipeType<IMachineCrafting> MACHINE_CRAFTING_RECIPE = register("crafting_machine");
-    public static final RecipeSerializer<CraftingMachineSmeltingRecipe> CRAFTING_MACHINE_SMELTING_RECIPE_SERIALIZER = register("crafting_machine_smelting", new CraftingMachineSmeltingRecipe.Serializer());
-    public static final RecipeType<CraftingMachineSmeltingRecipe> CRAFTING_MACHINE_SMELTING_RECIPE_TYPE = register("crating_machine_smelting");
+
     public static final RecipeType<ConversionRecipe> CONVERSION_RECIPE_TYPE = register("conversion");
     public static final RecipeSerializer<ConversionRecipe> CONVERSION_RECIPE_SERIALIZER = register("conversion", new ConversionRecipe.Serializer());
 

@@ -1,0 +1,16 @@
+{
+  "category": "geoactivity:tools",
+  "name": "Reinforced Miner",
+  "icon": "geoactivity:reinforced_miner",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Empty"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_miner"
+    }
+  ]
+
+}
