@@ -1,7 +1,7 @@
 package daniking.geoactivity.mixin.recharge;
 
 import daniking.geoactivity.api.item.Rechargeable;
-import daniking.geoactivity.common.util.RechargeableHelper;
+import daniking.geoactivity.common.util.RechargeUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -28,8 +28,8 @@ public abstract class ItemMixin{
     private void setDestroyedOnMine(BlockState state, World world, BlockPos pos, PlayerEntity miner, CallbackInfoReturnable<Boolean> cir) {
         final ItemStack stack = miner.getMainHandStack();
         if (stack.getItem() instanceof Rechargeable) {
-            RechargeableHelper.initDestroyedNbt(miner, stack);
-            if (RechargeableHelper.isDestroyed(stack)) {
+            RechargeUtil.initDestroyedNbt(miner, stack);
+            if (RechargeUtil.isDestroyed(stack)) {
                 cir.setReturnValue(false);
             }
         }
@@ -39,7 +39,7 @@ public abstract class ItemMixin{
         if (this.isIn(group) && this instanceof Rechargeable) {
             final ItemStack stack = this.getDefaultStack();
             stack.setDamage(stack.getMaxDamage() - 2);
-            RechargeableHelper.setDestroyed(stack);
+            RechargeUtil.setDestroyed(stack);
             list.add(stack);
             list.add(this.getDefaultStack());
             ci.cancel();

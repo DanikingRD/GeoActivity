@@ -3,7 +3,7 @@ package daniking.geoactivity.api.item;
 import daniking.geoactivity.common.recipe.ConversionRecipe;
 import daniking.geoactivity.common.registry.GARecipeTypes;
 import daniking.geoactivity.common.util.GAInventory;
-import daniking.geoactivity.common.util.RechargeableHelper;
+import daniking.geoactivity.common.util.RechargeUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -39,7 +39,7 @@ public abstract class BuilderItem extends Item implements Rechargeable{
         }
 
         final ItemStack stack = context.getStack();
-        RechargeableHelper.initDestroyedNbt(context.getPlayer(), stack);
+        RechargeUtil.initDestroyedNbt(context.getPlayer(), stack);
 
         if (canConvert(context.getStack())) {
             convertItem(context);
@@ -53,8 +53,8 @@ public abstract class BuilderItem extends Item implements Rechargeable{
         if (container.isEmpty()) {
             return false;
         }
-        if (RechargeableHelper.isAlmostBroken(container)) {
-            RechargeableHelper.setDestroyed(container);
+        if (RechargeUtil.isAlmostBroken(container)) {
+            RechargeUtil.setDestroyed(container);
             return false;
         }
         final GAInventory inventory = this.builderInventory(container);
@@ -66,7 +66,7 @@ public abstract class BuilderItem extends Item implements Rechargeable{
         if (inputStack.getItem() == outputStack.getItem()) {
             return false;
         }
-        return !RechargeableHelper.isDestroyed(container);
+        return !RechargeUtil.isDestroyed(container);
     }
 
     protected void convertItem(final ItemUsageContext context) {

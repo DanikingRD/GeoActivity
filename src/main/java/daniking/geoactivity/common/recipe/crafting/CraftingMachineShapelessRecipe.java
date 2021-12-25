@@ -16,7 +16,7 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public record CraftingMachineShapelessRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> input) implements IMachineCrafting {
+public record CraftingMachineShapelessRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> input) implements IMachineCraftingRecipe {
 
     @Override
     public boolean matches(CraftingInventory craftingInventory, World world) {

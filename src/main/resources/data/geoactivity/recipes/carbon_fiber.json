@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GGG",
+    "   "
+  ],
+  "key": {
+    "G": {
+      "item": "geoactivity:graphite"
+    }
+  },
+  "result": {
+    "item": "geoactivity:carbon_fiber"
+  }
+}

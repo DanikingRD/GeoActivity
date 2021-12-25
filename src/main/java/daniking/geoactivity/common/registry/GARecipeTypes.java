@@ -5,7 +5,7 @@ import daniking.geoactivity.common.recipe.ConversionRecipe;
 import daniking.geoactivity.common.recipe.RefinementRecipe;
 import daniking.geoactivity.common.recipe.crafting.CraftingMachineShapedRecipe;
 import daniking.geoactivity.common.recipe.crafting.CraftingMachineShapelessRecipe;
-import daniking.geoactivity.common.recipe.crafting.IMachineCrafting;
+import daniking.geoactivity.common.recipe.crafting.IMachineCraftingRecipe;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
@@ -25,7 +25,7 @@ public final class GARecipeTypes {
 
     public static final RecipeSerializer<CraftingMachineShapedRecipe> CRAFTING_MACHINE_SHAPED_RECIPE_SERIALIZER = register("crafting_machine_shaped", new CraftingMachineShapedRecipe.Serializer());
     public static final RecipeSerializer<CraftingMachineShapelessRecipe> CRAFTING_MACHINE_SHAPELESS_RECIPE_SERIALIZER = register("crafting_machine_shapeless", new CraftingMachineShapelessRecipe.Serializer());
-    public static final RecipeType<IMachineCrafting> MACHINE_CRAFTING_RECIPE = register("crafting_machine");
+    public static final RecipeType<IMachineCraftingRecipe> MACHINE_CRAFTING_RECIPE_TYPE = register("crafting_machine");
 
     public static final RecipeType<ConversionRecipe> CONVERSION_RECIPE_TYPE = register("conversion");
     public static final RecipeSerializer<ConversionRecipe> CONVERSION_RECIPE_SERIALIZER = register("conversion", new ConversionRecipe.Serializer());

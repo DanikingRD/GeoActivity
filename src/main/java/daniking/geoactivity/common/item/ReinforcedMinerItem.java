@@ -14,7 +14,7 @@ public class ReinforcedMinerItem extends MinerItem {
     }
 
     @Override
-    public int size() {
+    public int inventorySize() {
         return 1;
     }
 

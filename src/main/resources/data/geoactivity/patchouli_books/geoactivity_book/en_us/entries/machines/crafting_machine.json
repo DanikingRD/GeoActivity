@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Crafting machine is used for advanced crafting such as chargeable armor, tools and perks!."
+      "text": "Crafting machine is used for advanced crafting such as chargeable armor, tools and perks.$(br2)All the tools you craft in there will have low durability (You'll need to $(l:geoactivity:basics/charge)Charge$() it.)"
     },
     {
       "type": "patchouli:crafting",

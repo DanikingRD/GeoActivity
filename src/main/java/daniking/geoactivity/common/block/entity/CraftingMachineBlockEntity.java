@@ -1,7 +1,7 @@
 package daniking.geoactivity.common.block.entity;
 
 import daniking.geoactivity.client.gui.screen.handler.CraftingMachineScreenHandler;
-import daniking.geoactivity.common.recipe.crafting.IMachineCrafting;
+import daniking.geoactivity.common.recipe.crafting.IMachineCraftingRecipe;
 import daniking.geoactivity.common.registry.GABlockEntityTypes;
 import daniking.geoactivity.common.registry.GARecipeTypes;
 import net.minecraft.block.BlockState;
@@ -33,7 +33,7 @@ public class CraftingMachineBlockEntity extends GAMachineBlockEntity {
     private final PropertyDelegate delegate;
 
     private CraftingInventory craftingInventory = null;
-    private IMachineCrafting lastRecipe = null;
+    private IMachineCraftingRecipe lastRecipe = null;
 
     public CraftingMachineBlockEntity(BlockPos pos, BlockState state) {
         super(GABlockEntityTypes.CRAFTING_MACHINE, 10, pos, state);
@@ -99,7 +99,7 @@ public class CraftingMachineBlockEntity extends GAMachineBlockEntity {
 
     public static void tick(World world, CraftingMachineBlockEntity blockEntity) {
         if (world != null && !world.isClient) {
-            final IMachineCrafting recipe = blockEntity.getCurrentRecipe();
+            final IMachineCraftingRecipe recipe = blockEntity.getCurrentRecipe();
             if (recipe == null) {
                 blockEntity.progress = 0;
                 return;
@@ -119,7 +119,7 @@ public class CraftingMachineBlockEntity extends GAMachineBlockEntity {
         }
     }
 
-    private boolean craft(IMachineCrafting recipe) {
+    private boolean craft(IMachineCraftingRecipe recipe) {
         if (recipe == null) {
             return false;
         } else if (!canCraft(recipe)) {
@@ -155,7 +155,7 @@ public class CraftingMachineBlockEntity extends GAMachineBlockEntity {
     }
 
     @Nullable
-    public IMachineCrafting getCurrentRecipe() {
+    public IMachineCraftingRecipe getCurrentRecipe() {
         if (this.world == null) {
             return null;
         }
@@ -165,7 +165,7 @@ public class CraftingMachineBlockEntity extends GAMachineBlockEntity {
         } else if (this.lastRecipe != null && lastRecipe.matches(crafting, world)) {
             return lastRecipe;
         } else {
-            final Optional<IMachineCrafting> recipe = world.getRecipeManager().getFirstMatch(GARecipeTypes.MACHINE_CRAFTING_RECIPE, crafting, this.world);
+            final Optional<IMachineCraftingRecipe> recipe = world.getRecipeManager().getFirstMatch(GARecipeTypes.MACHINE_CRAFTING_RECIPE_TYPE, crafting, this.world);
             if (recipe.isPresent()) {
                 lastRecipe = recipe.get();
                 return lastRecipe;
@@ -202,7 +202,7 @@ public class CraftingMachineBlockEntity extends GAMachineBlockEntity {
         }
     }
 
-    private boolean canCraft(IMachineCrafting recipe) {
+    private boolean canCraft(IMachineCraftingRecipe recipe) {
         if (this.world == null) {
             return false;
         } else if (recipe == null) {

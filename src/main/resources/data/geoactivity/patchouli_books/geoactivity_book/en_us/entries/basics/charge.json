@@ -1,0 +1,11 @@
+{
+  "category": "geoactivity:basics",
+  "name": "Charge",
+  "icon": "geoactivity:anthracite_coal",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Geoactivity coals have the ability to charge any tool that supports them (usually advanced tools), and by doing so it repairs the tool.$(br2)Here is the amount of charge each one has$(br2)Lignite Charge: 40.$(br2)Bituminous Charge: 160.$(br2)Anthracite Charge: 300."
+    }
+  ]
+}

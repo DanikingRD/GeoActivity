@@ -11,7 +11,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.List;
 
-public class RechargeableHelper {
+public class RechargeUtil {
 
     public static final String DESTROYED_KEY = Rechargeable.DESTROYED_NBT_KEY;
 
@@ -27,18 +27,18 @@ public class RechargeableHelper {
         int index = 1;
         if (i >= 2) {
             if (!Screen.hasShiftDown()) {
-                tooltipList.add(index, new TranslatableText("daniking.geoactivity.tooltip.more_info", new TranslatableText("daniking.geoactivity.tooltip.shift").formatted(Formatting.GREEN)).formatted(Formatting.GRAY));
+                tooltipList.add(index, new TranslatableText("geoactivity.tooltip.more_info", new TranslatableText("geoactivity.tooltip.shift").formatted(Formatting.GREEN)).formatted(Formatting.GRAY));
                 return;
             }
         }
         if (isDestroyed(stack)) {
-            tooltipList.add(index, new TranslatableText("daniking.geoactivity.tooltip.destroyed").formatted(Formatting.RED));
+            tooltipList.add(index, new TranslatableText("geoactivity.tooltip.fatigued").formatted(Formatting.RED));
             index += 1;
         }
         if (stack.getItem() instanceof BuilderItem) {
             GAInventory inventory = GAInventory.create(stack, 3);
             int count = inventory.getStack(2).isEmpty() ? 0 : inventory.getStack(1).getCount();
-            tooltipList.add(index, new TranslatableText("daniking.geoactivity.tooltip.blocks", count).formatted(Formatting.GOLD));
+            tooltipList.add(index, new TranslatableText("geoactivity.tooltip.blocks", count).formatted(Formatting.GOLD));
         }
     }
 

@@ -5,11 +5,11 @@ import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 
-public interface IMachineCrafting extends Recipe<CraftingInventory> {
+public interface IMachineCraftingRecipe extends Recipe<CraftingInventory> {
 
     @Override
     default RecipeType<?> getType() {
-        return GARecipeTypes.MACHINE_CRAFTING_RECIPE;
+        return GARecipeTypes.MACHINE_CRAFTING_RECIPE_TYPE;
     }
 
     @Override

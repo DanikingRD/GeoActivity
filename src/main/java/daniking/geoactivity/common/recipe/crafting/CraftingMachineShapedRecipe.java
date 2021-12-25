@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.Map;
 
-public record CraftingMachineShapedRecipe(Identifier id, int width, int height, DefaultedList<Ingredient> input, ItemStack output) implements IMachineCrafting {
+public record CraftingMachineShapedRecipe(Identifier id, int width, int height, DefaultedList<Ingredient> input, ItemStack output) implements IMachineCraftingRecipe {
 
     @Override
     public ItemStack craft(CraftingInventory inventory) {

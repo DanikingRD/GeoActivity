@@ -21,9 +21,11 @@ public class GABookItem extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        final ItemStack stack = user.getStackInHand(hand);
         if (user instanceof ServerPlayerEntity serverPlayer) {
             final Book book = BookRegistry.INSTANCE.books.get(Registry.ITEM.getId(this));
             PatchouliAPI.get().openBookGUI(serverPlayer, book.id);
+            // This plays the sound to others nearby, playing to the actual opening player handled from the packet
             user.playSound(PatchouliSounds.getSound(book.openSound, PatchouliSounds.BOOK_OPEN), 1, (float) (0.7 + Math.random() * 0.4));
         }
         return TypedActionResult.success(user.getStackInHand(hand));

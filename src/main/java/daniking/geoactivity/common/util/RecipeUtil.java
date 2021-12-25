@@ -34,7 +34,7 @@ public class RecipeUtil {
         final ItemStack jsonStack = new ItemStack(item);
         if (item instanceof Rechargeable) {
             jsonStack.setDamage(jsonStack.getMaxDamage() - 2);
-            RechargeableHelper.onCraft(jsonStack);
+            RechargeUtil.onCraft(jsonStack);
         }
         return jsonStack;
     }

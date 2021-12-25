@@ -2,7 +2,7 @@ package daniking.geoactivity.mixin.recharge;
 
 import daniking.geoactivity.api.item.IAdvancedArmor;
 import daniking.geoactivity.api.item.Rechargeable;
-import daniking.geoactivity.common.util.RechargeableHelper;
+import daniking.geoactivity.common.util.RechargeUtil;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -36,7 +36,7 @@ public class PlayerInventoryMixin {
                     advancedArmor.onArmorDamage(stack, player, damageSource, amount, slots);
                 }
                 if (armor instanceof Rechargeable) {
-                    if (RechargeableHelper.isDestroyed(stack)) {
+                    if (RechargeUtil.isDestroyed(stack)) {
                         ci.cancel();
                     }
                 }

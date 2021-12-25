@@ -5,8 +5,7 @@ import daniking.geoactivity.common.registry.GATags;
 import net.minecraft.item.ToolMaterial;
 
 /**
- * Base class for all miner items,
- * which inherits from mining tool item and rechargeable interface.
+ * Base class for all miner items
  */
 public abstract class MinerItem extends GAMiningToolItem implements Rechargeable {
 

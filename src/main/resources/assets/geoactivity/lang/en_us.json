@@ -44,7 +44,7 @@
     "item.geoactivity.advanced_boots": "Advanced Boots",
     "item.geoactivity.geoactivity_book": "GeoActivity Book",
     "item.geoactivity.geoactivity_book.landing_text": "GeoActivity book for beginners.",
-    "geoactivity.tooltip.destroyed": "Destroyed",
+    "geoactivity.tooltip.fatigued": "Fatigued",
     "geoactivity.tooltip.shift": "Shift",
     "geoactivity.tooltip.more_info": "Hold %s for more info",
     "geoactivity.tooltip.blocks": "Blocks: %s",

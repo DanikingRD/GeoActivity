@@ -18,7 +18,7 @@ public class AutoStoneBuilderItem extends BuilderItem {
     }
 
     @Override
-    public int size() {
+    public int inventorySize() {
         return 3;
     }
 }

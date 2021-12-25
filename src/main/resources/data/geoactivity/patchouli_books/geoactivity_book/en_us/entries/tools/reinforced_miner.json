@@ -5,11 +5,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Empty"
+      "text": "The Reinforced Miner can be recharged using charge coals"
     },
     {
-      "type": "patchouli:crafting",
-      "recipe": "geoactivity:reinforced_miner"
+      "type": "geoactivity:advanced_crafting",
+      "recipe": "geoactivity:advanced_crafting/reinforced_miner",
+      "text": "Reinforced Shovel and Pickaxe in one."
     }
   ]
 

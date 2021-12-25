@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    " S ",
+    " S ",
+    "   "
+  ],
+  "key": {
+    "S": {
+      "item": "geoactivity:carbon_fiber"
+    }
+  },
+  "result": {
+    "item": "geoactivity:carbon_stick"
+  }
+}

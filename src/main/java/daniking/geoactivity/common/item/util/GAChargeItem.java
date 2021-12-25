@@ -15,11 +15,11 @@ public class GAChargeItem extends Item implements Charge {
     @Override
     public int getCharge() {
         if (this == GAObjects.LIGNITE_COAL) {
-            return 100;
+            return 40;
         } else if (this == GAObjects.BITUMINOUS_COAL) {
-            return 200;
+            return 160;
         } else if (this == GAObjects.ANTHRACITE_COAL) {
-            return 300;
+            return 320;
         } else {
             return 0;
         }

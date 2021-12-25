@@ -4,7 +4,7 @@ import daniking.geoactivity.api.item.IAdvancedArmor;
 import daniking.geoactivity.api.item.IUpgradeable;
 import daniking.geoactivity.api.item.Rechargeable;
 import daniking.geoactivity.common.util.GAInventory;
-import daniking.geoactivity.common.util.RechargeableHelper;
+import daniking.geoactivity.common.util.RechargeUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.damage.DamageSource;
@@ -25,12 +25,12 @@ public class AdvancedArmorItem extends ArmorItem implements IUpgradeable, IAdvan
 
     @Override
     public void onArmorDamage(ItemStack stack, PlayerEntity player, DamageSource source, float amount, int[] slots) {
-        RechargeableHelper.initDestroyedNbt(player, stack);
+        RechargeUtil.initDestroyedNbt(player, stack);
     }
 
     @Override
     public int getArmorProtection(ItemStack equipment, PlayerEntity player) {
-        if (RechargeableHelper.isDestroyed(equipment)) {
+        if (RechargeUtil.isDestroyed(equipment)) {
             return player.getArmor() - this.getProtection();
         }
         return IAdvancedArmor.super.getArmorProtection(equipment, player);

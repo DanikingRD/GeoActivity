@@ -1,7 +1,7 @@
 package daniking.geoactivity.common.event.handler;
 
 import daniking.geoactivity.api.item.Rechargeable;
-import daniking.geoactivity.common.util.RechargeableHelper;
+import daniking.geoactivity.common.util.RechargeUtil;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,7 @@ public class AttackBlockHandler implements AttackBlockCallback {
     public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockPos pos, Direction direction) {
         final ItemStack stack = player.getStackInHand(hand);
         if (stack.getItem() instanceof Rechargeable) {
-            RechargeableHelper.initDestroyedNbt(player, stack);
+            RechargeUtil.initDestroyedNbt(player, stack);
             return ActionResult.PASS;
         }
         return ActionResult.PASS;

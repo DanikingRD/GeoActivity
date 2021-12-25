@@ -76,7 +76,6 @@ public final class GAObjects {
     public static final Item ADVANCED_CHESTPLATE = register("advanced_chestplate", new AdvancedArmorItem(GAMaterials.ADVANCED_ARMOR, EquipmentSlot.CHEST, settings()));
     public static final Item ADVANCED_LEGGINGS = register("advanced_leggings", new AdvancedArmorItem(GAMaterials.ADVANCED_ARMOR, EquipmentSlot.LEGS, settings()));
     public static final Item ADVANCED_BOOTS = register("advanced_boots", new AdvancedArmorItem(GAMaterials.ADVANCED_ARMOR, EquipmentSlot.FEET, settings()));
-
     //book
     public static final Item GEOACTIVITY_BOOK = register("geoactivity_book", new GABookItem(settings().maxCount(1)));
 

@@ -4,7 +4,7 @@ import com.google.common.collect.Multimap;
 import daniking.geoactivity.api.gui.handler.ItemScreenHandler;
 import daniking.geoactivity.common.item.util.GAMiningToolItem;
 import daniking.geoactivity.common.util.GAInventory;
-import daniking.geoactivity.common.util.RechargeableHelper;
+import daniking.geoactivity.common.util.RechargeUtil;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -23,7 +23,7 @@ public interface Rechargeable {
      * Nbt key of destroyed boolean
      * for rechargeable stuff
      */
-    String DESTROYED_NBT_KEY = "destroyed";
+    String DESTROYED_NBT_KEY = "fatigued";
 
     /**
      * Charge slot index for all
@@ -41,7 +41,7 @@ public interface Rechargeable {
      * Gets the size of the inventory.
      * @return int.
      */
-    int size();
+    int inventorySize();
 
     /**
      * Removes and puts back stack attributes modifier
@@ -52,13 +52,13 @@ public interface Rechargeable {
      */
     default void handleAttributesModifiers(final EquipmentSlot slot, final ItemStack stack, final Multimap<EntityAttribute, EntityAttributeModifier> attributes) {
         if (slot == EquipmentSlot.MAINHAND) {
-           if (RechargeableHelper.isDestroyed(stack)) {
+           if (RechargeUtil.isDestroyed(stack)) {
                 attributes.removeAll(EntityAttributes.GENERIC_ATTACK_DAMAGE);
                 attributes.removeAll(EntityAttributes.GENERIC_ATTACK_SPEED);
                 return;
             }
             if (stack.getItem() instanceof GAMiningToolItem miner) {
-                if (attributes.isEmpty() && !RechargeableHelper.isDestroyed(stack)) {
+                if (attributes.isEmpty() && !RechargeUtil.isDestroyed(stack)) {
                     attributes.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", miner.getAttackDamage(), EntityAttributeModifier.Operation.ADDITION));
                     attributes.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", miner.getAttackSpeed(), EntityAttributeModifier.Operation.ADDITION));
                 }

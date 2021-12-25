@@ -13,7 +13,7 @@ public interface IUpgradeable extends Rechargeable {
     }
 
     @Override
-    default int size() {
+    default int inventorySize() {
         return 2;
     }
 }

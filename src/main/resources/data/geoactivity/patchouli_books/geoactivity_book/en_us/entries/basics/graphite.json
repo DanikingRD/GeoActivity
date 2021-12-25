@@ -1,0 +1,17 @@
+{
+  "category": "geoactivity:basics",
+  "name": "Graphite",
+  "icon": "geoactivity:graphite",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Graphite is one of the most important items you will need to start with. You can get it by $(l:geoactivity:machines/coal_refiner)Refinement$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Graphite",
+      "item": "geoactivity:graphite",
+      "text": "Graphite may be considered the highest grade of coal, just above anthracite and alternatively called meta-anthracite, although it is not normally used as fuel because it is difficult to ignite."
+    }
+  ]
+}

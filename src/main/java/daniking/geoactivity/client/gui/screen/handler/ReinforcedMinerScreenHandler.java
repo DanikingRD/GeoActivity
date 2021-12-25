@@ -13,6 +13,9 @@ public class ReinforcedMinerScreenHandler extends ItemScreenHandler {
     }
     public ReinforcedMinerScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
         super(GAScreenHandlerTypes.REINFORCED_MINER, syncId, playerInventory, inventory);
-        this.builder().playerSetup().charge(80, 34).build();
+        this.builder()
+                .playerSetup()
+                .charge(80, 34)
+                .build();
     }
 }

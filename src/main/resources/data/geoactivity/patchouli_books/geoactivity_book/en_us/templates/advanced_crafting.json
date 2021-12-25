@@ -1,0 +1,96 @@
+{
+  "processor": "daniking.geoactivity.client.integration.patchouli.CraftingMachineProcessor",
+  "components": [
+    {
+      "type": "patchouli:image",
+      "image": "geoactivity:textures/gui/patchouli/crafting.png",
+      "x": 8,
+      "y": 17,
+      "u": 3,
+      "v": 31,
+      "texture_width": 256,
+      "texture_height": 256,
+      "width": 106,
+      "height": 62,
+      "scale": 1
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#ingredient0",
+      "x": 10,
+      "y": 19
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#ingredient1",
+      "x": 31,
+      "y": 19
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#ingredient2",
+      "x": 52,
+      "y": 19
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#ingredient3",
+      "x": 52,
+      "y": 41
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#ingredient4",
+      "x": 31,
+      "y": 41
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#ingredient5",
+      "x": 10,
+      "y": 41
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#ingredient6",
+      "x": 10,
+      "y": 62
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#ingredient7",
+      "x": 31,
+      "y": 62
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#ingredient8",
+      "x": 52,
+      "y": 62
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#output",
+      "x": 95,
+      "y": 40
+    },
+    {
+      "type": "patchouli:item",
+      "item": "geoactivity:crafting_machine",
+      "x": 95,
+      "y": 59
+    },
+    {
+      "type": "patchouli:text",
+      "text": "#text",
+      "x": 0,
+      "y": 85
+    },
+    {
+      "type": "patchouli:header",
+      "text": "#header",
+      "x": -1,
+      "y": 0
+    }
+  ]
+}
