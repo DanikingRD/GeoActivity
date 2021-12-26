@@ -53,10 +53,10 @@ public abstract class BuilderItem extends Item implements Rechargeable{
         if (container.isEmpty()) {
             return false;
         }
-        if (RechargeUtil.isAlmostBroken(container)) {
-            RechargeUtil.setDestroyed(container);
-            return false;
-        }
+//        if (RechargeUtil.isAlmostBroken(container)) {
+//            RechargeUtil.markFatigued(container);
+//            return false;
+//        }
         final GAInventory inventory = this.builderInventory(container);
         final ItemStack inputStack = inventory.getStack(1);
         final ItemStack outputStack = inventory.getStack(2);
@@ -66,7 +66,7 @@ public abstract class BuilderItem extends Item implements Rechargeable{
         if (inputStack.getItem() == outputStack.getItem()) {
             return false;
         }
-        return !RechargeUtil.isDestroyed(container);
+        return !RechargeUtil.isFatigued(container);
     }
 
     protected void convertItem(final ItemUsageContext context) {

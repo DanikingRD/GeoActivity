@@ -31,12 +31,12 @@ public class RecipeUtil {
         if (i < 1) {
             throw new JsonSyntaxException("Invalid count: " + i);
         }
-        final ItemStack jsonStack = new ItemStack(item);
+        final ItemStack stack = new ItemStack(item);
         if (item instanceof Rechargeable) {
-            jsonStack.setDamage(jsonStack.getMaxDamage() - 2);
-            RechargeUtil.onCraft(jsonStack);
+            stack.setDamage(stack.getMaxDamage() - 2);
+            RechargeUtil.markFatigued(stack);
         }
-        return jsonStack;
+        return stack;
     }
 
     public static Map<String, Ingredient> readJsonSymbols(JsonObject json) {
@@ -79,7 +79,6 @@ public class RecipeUtil {
         }
     }
 
-    //This is awful
    private static String[] removePadding(String... pattern) {
         int i = 2147483647;
         int j = 0;
@@ -147,7 +146,4 @@ public class RecipeUtil {
         }
         return i;
     }
-
-
-
 }

@@ -16,30 +16,32 @@ public class GeoActivityAPI {
      * @param container ItemStack.
      */
     public static void charge(final ItemStack container) {
-        if (container.getItem() instanceof Rechargeable rechargeable) {
-            final GAInventory inventory = GAInventory.create(container, rechargeable.inventorySize());
-            if (!inventory.isEmpty()) {
-                final int chargeSlotIndex = Rechargeable.CHARGE_SLOT_INDEX;
-                final ItemStack fuelStack = inventory.getStack(chargeSlotIndex);
-                if (fuelStack.isIn(GATags.CHARGE)) {
-                    int charge = 0;
-                    for (final Item chargeItem : GATags.CHARGE.values()) {
-                        if (fuelStack.getItem() == chargeItem) {
-                            if (chargeItem instanceof final Charge fuel) {
-                                charge = fuel.getCharge();
+        if (container != null && !container.isEmpty()) {
+            if (container.getItem() instanceof Rechargeable rechargeable) {
+                final GAInventory inventory = GAInventory.create(container, rechargeable.inventorySize());
+                if (!inventory.isEmpty()) {
+                    final int index = Rechargeable.CHARGE_SLOT_INDEX;
+                    final ItemStack fuelStack = inventory.getStack(index);
+                    if (fuelStack.isIn(GATags.CHARGE)) {
+                        int charge = 0;
+                        for (final Item chargeItem : GATags.CHARGE.values()) {
+                            if (fuelStack.getItem() == chargeItem) {
+                                if (chargeItem instanceof final Charge fuel) {
+                                    charge = fuel.getCharge();
+                                }
                             }
                         }
-                    }
-                    if (charge > 0) {
-                        final int damage = container.getDamage();
-                        final int restored = (damage - charge);
-                        if (restored > 0) {
-                            container.setDamage(restored);
-                            inventory.removeStack(chargeSlotIndex, 1);
-                        }
-                        if (container.getDamage() != damage) {
-                            if (RechargeUtil.isDestroyed(container)) {
-                                NbtHelper.remove(container, Rechargeable.DESTROYED_NBT_KEY);
+                        if (charge > 0) {
+                            final int damage = container.getDamage();
+                            final int restored = (damage - charge);
+                            if (restored > 0) {
+                                container.setDamage(restored);
+                                inventory.removeStack(index, 1);
+                            }
+                            if (container.getDamage() != damage) {
+                                if (RechargeUtil.isFatigued(container)) {
+                                    NbtHelper.remove(container, Rechargeable.FATIGUED_NBT_KEY);
+                                }
                             }
                         }
                     }

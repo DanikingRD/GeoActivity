@@ -20,10 +20,10 @@ public interface Rechargeable {
      UUID ATTACK_SPEED_MODIFIER_ID = UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3");
 
     /**
-     * Nbt key of destroyed boolean
-     * for rechargeable stuff
+     * Nbt key used whenever
+     * the tool is fatigued
      */
-    String DESTROYED_NBT_KEY = "fatigued";
+    String FATIGUED_NBT_KEY = "fatigued";
 
     /**
      * Charge slot index for all
@@ -52,13 +52,13 @@ public interface Rechargeable {
      */
     default void handleAttributesModifiers(final EquipmentSlot slot, final ItemStack stack, final Multimap<EntityAttribute, EntityAttributeModifier> attributes) {
         if (slot == EquipmentSlot.MAINHAND) {
-           if (RechargeUtil.isDestroyed(stack)) {
+           if (RechargeUtil.isFatigued(stack)) {
                 attributes.removeAll(EntityAttributes.GENERIC_ATTACK_DAMAGE);
                 attributes.removeAll(EntityAttributes.GENERIC_ATTACK_SPEED);
                 return;
             }
             if (stack.getItem() instanceof GAMiningToolItem miner) {
-                if (attributes.isEmpty() && !RechargeUtil.isDestroyed(stack)) {
+                if (attributes.isEmpty() && !RechargeUtil.isFatigued(stack)) {
                     attributes.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", miner.getAttackDamage(), EntityAttributeModifier.Operation.ADDITION));
                     attributes.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", miner.getAttackSpeed(), EntityAttributeModifier.Operation.ADDITION));
                 }

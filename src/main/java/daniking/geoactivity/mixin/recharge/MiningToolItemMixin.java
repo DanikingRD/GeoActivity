@@ -15,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MiningToolItemMixin {
 
     @Inject(method = "postHit", at = @At("HEAD"), cancellable = true)
-    private void setDestroyedOnEntityHit(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
+    private void markFatiguedOnEntityHit(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
         if (stack.getItem() instanceof Rechargeable) {
             RechargeUtil.initDestroyedNbt((PlayerEntity) attacker, stack);
-            if (RechargeUtil.isDestroyed(stack)) {
+            if (RechargeUtil.isFatigued(stack)) {
                 cir.setReturnValue(false);
             }
         }

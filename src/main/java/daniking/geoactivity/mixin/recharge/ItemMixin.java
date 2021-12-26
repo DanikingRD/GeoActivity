@@ -29,7 +29,7 @@ public abstract class ItemMixin{
         final ItemStack stack = miner.getMainHandStack();
         if (stack.getItem() instanceof Rechargeable) {
             RechargeUtil.initDestroyedNbt(miner, stack);
-            if (RechargeUtil.isDestroyed(stack)) {
+            if (RechargeUtil.isFatigued(stack)) {
                 cir.setReturnValue(false);
             }
         }
@@ -39,7 +39,7 @@ public abstract class ItemMixin{
         if (this.isIn(group) && this instanceof Rechargeable) {
             final ItemStack stack = this.getDefaultStack();
             stack.setDamage(stack.getMaxDamage() - 2);
-            RechargeUtil.setDestroyed(stack);
+            RechargeUtil.markFatigued(stack);
             list.add(stack);
             list.add(this.getDefaultStack());
             ci.cancel();

@@ -24,7 +24,6 @@ public class UseItemHandler implements UseItemCallback {
         final ItemStack stack = player.getStackInHand(hand);
         if (!world.isClient) {
             if (stack.getItem() instanceof Rechargeable item) {
-                final GAInventory inventory = GAInventory.create(stack, item.inventorySize());
                 if (player.isSneaking()) {
                     player.openHandledScreen(new NamedScreenHandlerFactory() {
                         @Override
@@ -35,7 +34,7 @@ public class UseItemHandler implements UseItemCallback {
                         @Nullable
                         @Override
                         public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-                            return item.getGui(syncId, inv, inventory);
+                            return item.getGui(syncId, inv, GAInventory.create(stack, item.inventorySize()));
                         }
                     });
                 } else {

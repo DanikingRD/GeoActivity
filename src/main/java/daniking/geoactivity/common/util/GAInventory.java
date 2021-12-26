@@ -14,7 +14,6 @@ public final class GAInventory extends InventoryBase {
         this.stack = stack;
         this.readNbt();
     }
-
     @Override
     public void onClose(PlayerEntity player) {
         super.onClose(player);

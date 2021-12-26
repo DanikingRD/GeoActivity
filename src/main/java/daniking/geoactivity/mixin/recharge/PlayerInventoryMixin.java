@@ -36,7 +36,7 @@ public class PlayerInventoryMixin {
                     advancedArmor.onArmorDamage(stack, player, damageSource, amount, slots);
                 }
                 if (armor instanceof Rechargeable) {
-                    if (RechargeUtil.isDestroyed(stack)) {
+                    if (RechargeUtil.isFatigued(stack)) {
                         ci.cancel();
                     }
                 }

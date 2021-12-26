@@ -2,7 +2,7 @@ package daniking.geoactivity;
 
 import daniking.geoactivity.client.gui.screen.*;
 import daniking.geoactivity.client.renderer.CraftingMachineBlockEntityRenderer;
-import daniking.geoactivity.common.event.handler.ItemTooltipHandler;
+import daniking.geoactivity.client.event.handler.ItemTooltipHandler;
 import daniking.geoactivity.common.registry.GABlockEntityTypes;
 import daniking.geoactivity.common.registry.GAObjects;
 import daniking.geoactivity.common.registry.GAScreenHandlerTypes;

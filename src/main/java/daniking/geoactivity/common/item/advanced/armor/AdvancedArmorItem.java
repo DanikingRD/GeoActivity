@@ -30,7 +30,7 @@ public class AdvancedArmorItem extends ArmorItem implements IUpgradeable, IAdvan
 
     @Override
     public int getArmorProtection(ItemStack equipment, PlayerEntity player) {
-        if (RechargeUtil.isDestroyed(equipment)) {
+        if (RechargeUtil.isFatigued(equipment)) {
             return player.getArmor() - this.getProtection();
         }
         return IAdvancedArmor.super.getArmorProtection(equipment, player);

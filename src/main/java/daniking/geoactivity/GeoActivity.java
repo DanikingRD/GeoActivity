@@ -1,22 +1,21 @@
 package daniking.geoactivity;
 
+import com.mojang.brigadier.CommandDispatcher;
 import daniking.geoactivity.common.GAConfig;
+import daniking.geoactivity.common.event.handler.AttackBlockHandler;
+import daniking.geoactivity.common.event.handler.UseItemHandler;
 import daniking.geoactivity.common.registry.*;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-
-import com.mojang.brigadier.CommandDispatcher;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.util.Identifier;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static net.minecraft.server.command.CommandManager.literal;
 
@@ -35,7 +34,8 @@ public class GeoActivity implements ModInitializer {
 		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
 			opMe(dispatcher);
 		  });
-		GAEvents.init();
+		AttackBlockHandler.EVENT.register(new AttackBlockHandler());
+		UseItemHandler.EVENT.register(new UseItemHandler());
 		GAObjects.init();
 		GAFuels.init();
 		GABlockEntityTypes.init();
