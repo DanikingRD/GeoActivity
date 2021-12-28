@@ -1,0 +1,25 @@
+{
+  "type": "geoactivity:advanced_crafting_shaped",
+  "pattern": [
+    " SR",
+    " AS",
+    "/  "
+  ],
+  "key": {
+    "R": {
+      "item": "redstone_block"
+    },
+    "S": {
+      "item": "sandstone"
+    },
+    "A": {
+      "item": "geoactivity:precious_alloy_ingot"
+    },
+    "/": {
+      "item": "geoactivity:carbon_stick"
+    }
+  },
+  "result": {
+    "item": "geoactivity:auto_sandstone_builder"
+    }
+}

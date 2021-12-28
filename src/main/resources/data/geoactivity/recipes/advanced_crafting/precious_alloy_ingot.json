@@ -1,0 +1,19 @@
+{
+  "type": "geoactivity:advanced_crafting_shaped",
+  "pattern": [
+    " G ",
+    " D ",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "geoactivity:reinforced_ingot"
+    },
+    "D": {
+      "item": "diamond"
+    }
+  },
+  "result": {
+    "item": "geoactivity:precious_alloy_ingot"
+  }
+}

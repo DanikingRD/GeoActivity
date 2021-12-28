@@ -1,7 +1,7 @@
 package daniking.geoactivity.common.registry;
 
 import daniking.geoactivity.GeoActivity;
-import daniking.geoactivity.common.recipe.ConversionRecipe;
+import daniking.geoactivity.common.recipe.AutoBlockSmeltingRecipe;
 import daniking.geoactivity.common.recipe.RefinementRecipe;
 import daniking.geoactivity.common.recipe.crafting.CraftingMachineShapedRecipe;
 import daniking.geoactivity.common.recipe.crafting.CraftingMachineShapelessRecipe;
@@ -23,12 +23,12 @@ public final class GARecipeTypes {
     public static final RecipeSerializer<RefinementRecipe> REFINEMENT_RECIPE_SERIALIZER = register("refinement", new  RefinementRecipe.Serializer());
     public static final RecipeType<RefinementRecipe> REFINEMENT_RECIPE_TYPE = register("refinement");
 
-    public static final RecipeSerializer<CraftingMachineShapedRecipe> CRAFTING_MACHINE_SHAPED_RECIPE_SERIALIZER = register("crafting_machine_shaped", new CraftingMachineShapedRecipe.Serializer());
-    public static final RecipeSerializer<CraftingMachineShapelessRecipe> CRAFTING_MACHINE_SHAPELESS_RECIPE_SERIALIZER = register("crafting_machine_shapeless", new CraftingMachineShapelessRecipe.Serializer());
-    public static final RecipeType<IMachineCraftingRecipe> MACHINE_CRAFTING_RECIPE_TYPE = register("crafting_machine");
+    public static final RecipeSerializer<CraftingMachineShapedRecipe> CRAFTING_MACHINE_SHAPED_RECIPE_SERIALIZER = register("advanced_crafting_shaped", new CraftingMachineShapedRecipe.Serializer());
+    public static final RecipeSerializer<CraftingMachineShapelessRecipe> CRAFTING_MACHINE_SHAPELESS_RECIPE_SERIALIZER = register("advanced_crafting_shapeless", new CraftingMachineShapelessRecipe.Serializer());
+    public static final RecipeType<IMachineCraftingRecipe> MACHINE_CRAFTING_RECIPE_TYPE = register("advanced_crafting");
 
-    public static final RecipeType<ConversionRecipe> CONVERSION_RECIPE_TYPE = register("conversion");
-    public static final RecipeSerializer<ConversionRecipe> CONVERSION_RECIPE_SERIALIZER = register("conversion", new ConversionRecipe.Serializer());
+    public static final RecipeType<AutoBlockSmeltingRecipe> AUTO_BLOCK_SMELTING_RECIPE_TYPE = register("auto_block_smelting");
+    public static final RecipeSerializer<AutoBlockSmeltingRecipe> AUTO_BLOCK_SMELTING_RECIPE_SERIALIZER = register("auto_block_smelting", new AutoBlockSmeltingRecipe.Serializer());
 
     private static <T extends Recipe<?>> RecipeSerializer<T> register(String name, RecipeSerializer<T> serializer) {
         RECIPE_SERIALIZERS.put(serializer, new Identifier(GeoActivity.MODID, name));

@@ -1,16 +1,19 @@
 {
-  "type": "geoactivity:crafting_machine_shaped",
+  "type": "geoactivity:advanced_crafting_shaped",
   "pattern": [
-    " RA",
-    " /R",
+    " SR",
+    " AS",
     "/  "
   ],
   "key": {
     "R": {
       "item": "redstone_block"
     },
+    "S": {
+      "item": "stone"
+    },
     "A": {
-      "item": "geoactivity:small_precious_alloy_ingot"
+      "item": "geoactivity:precious_alloy_ingot"
     },
     "/": {
       "item": "geoactivity:carbon_stick"

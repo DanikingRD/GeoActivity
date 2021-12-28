@@ -16,68 +16,68 @@
     },
     {
       "type": "patchouli:item",
-      "item": "#ingredient0",
+      "item": "#item1",
       "x": 10,
       "y": 19
     },
     {
       "type": "patchouli:item",
-      "item": "#ingredient1",
+      "item": "#item2",
       "x": 31,
       "y": 19
     },
     {
       "type": "patchouli:item",
-      "item": "#ingredient2",
+      "item": "#item3",
       "x": 52,
       "y": 19
     },
     {
       "type": "patchouli:item",
-      "item": "#ingredient3",
+      "item": "#item4",
+      "x": 10,
+      "y": 40
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#item5",
+      "x": 31,
+      "y": 40
+    },
+    {
+      "type": "patchouli:item",
+      "item": "#item6",
       "x": 52,
-      "y": 41
+      "y": 40
     },
     {
       "type": "patchouli:item",
-      "item": "#ingredient4",
-      "x": 31,
-      "y": 41
-    },
-    {
-      "type": "patchouli:item",
-      "item": "#ingredient5",
-      "x": 10,
-      "y": 41
-    },
-    {
-      "type": "patchouli:item",
-      "item": "#ingredient6",
+      "item": "#item7",
       "x": 10,
       "y": 62
     },
     {
       "type": "patchouli:item",
-      "item": "#ingredient7",
+      "item": "#item8",
       "x": 31,
       "y": 62
     },
     {
       "type": "patchouli:item",
-      "item": "#ingredient8",
+      "item": "#item9",
       "x": 52,
       "y": 62
     },
     {
       "type": "patchouli:item",
       "item": "#output",
-      "x": 95,
+      "x": 96,
       "y": 40
     },
     {
       "type": "patchouli:item",
       "item": "geoactivity:crafting_machine",
-      "x": 95,
+      "x": 96,
       "y": 59
     },
     {

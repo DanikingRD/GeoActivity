@@ -1,14 +1,11 @@
 package daniking.geoactivity.api.gui;
 
 import daniking.geoactivity.api.gui.builder.ScreenBuilder;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
-
-import java.util.Objects;
 
 public class GuiBase<T extends ScreenHandler> extends HandledScreen<T> {
 
@@ -57,11 +54,6 @@ public class GuiBase<T extends ScreenHandler> extends HandledScreen<T> {
 
     public int guiHeight() {
         return this.backgroundHeight;
-    }
-
-    public MinecraftClient client() {
-        Objects.requireNonNull(this.client, "Minecraft Client is null");
-        return this.client;
     }
 
     public ScreenBuilder builder() {

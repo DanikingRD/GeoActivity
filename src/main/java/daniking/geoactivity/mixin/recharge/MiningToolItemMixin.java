@@ -1,6 +1,7 @@
 package daniking.geoactivity.mixin.recharge;
 
 import daniking.geoactivity.api.item.Rechargeable;
+import daniking.geoactivity.common.item.util.GAMiningToolItem;
 import daniking.geoactivity.common.util.RechargeUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +17,7 @@ public class MiningToolItemMixin {
 
     @Inject(method = "postHit", at = @At("HEAD"), cancellable = true)
     private void markFatiguedOnEntityHit(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.getItem() instanceof Rechargeable) {
+        if (stack.getItem() instanceof Rechargeable && stack.getItem() instanceof GAMiningToolItem) {
             RechargeUtil.initDestroyedNbt((PlayerEntity) attacker, stack);
             if (RechargeUtil.isFatigued(stack)) {
                 cir.setReturnValue(false);

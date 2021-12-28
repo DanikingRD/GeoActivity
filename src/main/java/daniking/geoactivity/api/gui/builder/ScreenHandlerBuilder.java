@@ -29,6 +29,10 @@ public final class ScreenHandlerBuilder {
         this.player = playerInventory.player;
     }
 
+    public ScreenHandlerBuilder customSlot(Slot slot) {
+        this.parent.addSlot(slot);
+        return this;
+    }
     public ScreenHandlerBuilder slot(final int index, final int posX, final int posY) {
         return this.slot(index, posX, posY, always -> true);
     }

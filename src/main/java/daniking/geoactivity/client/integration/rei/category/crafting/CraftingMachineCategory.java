@@ -71,12 +71,12 @@ public class CraftingMachineCategory implements DisplayCategory<Display> {
 
     @Override
     public CategoryIdentifier<? extends Display> getCategoryIdentifier() {
-        return GAREIPlugin.CRAFTING_MACHINE;
+        return GAREIPlugin.ADVANCED_CRAFTING;
     }
 
     public static void init(CategoryRegistry registry) {
         registry.add(new CraftingMachineCategory());
-        registry.addWorkstations(GAREIPlugin.CRAFTING_MACHINE, ICON);
-        registry.removePlusButton(GAREIPlugin.CRAFTING_MACHINE);
+        registry.addWorkstations(GAREIPlugin.ADVANCED_CRAFTING, ICON);
+        registry.removePlusButton(GAREIPlugin.ADVANCED_CRAFTING);
     }
 }

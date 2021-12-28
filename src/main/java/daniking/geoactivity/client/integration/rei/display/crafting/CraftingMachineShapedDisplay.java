@@ -48,7 +48,7 @@ public class CraftingMachineShapedDisplay implements SimpleGridMenuDisplay {
 
     @Override
     public CategoryIdentifier<?> getCategoryIdentifier() {
-        return GAREIPlugin.CRAFTING_MACHINE;
+        return GAREIPlugin.ADVANCED_CRAFTING;
     }
 
     public static int getSlotWithSize(int recipeWidth, int index, int craftingGridWidth) {

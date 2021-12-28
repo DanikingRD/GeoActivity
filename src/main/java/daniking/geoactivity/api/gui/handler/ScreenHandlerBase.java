@@ -17,7 +17,7 @@ import java.util.List;
 public abstract class ScreenHandlerBase extends ScreenHandler {
 
     protected final PlayerInventory playerInventory;
-    protected final Inventory inventory;
+    private final Inventory inventory;
     protected final PlayerEntity player;
     protected final World world;
     protected final List<Range<Integer>> playerRanges;

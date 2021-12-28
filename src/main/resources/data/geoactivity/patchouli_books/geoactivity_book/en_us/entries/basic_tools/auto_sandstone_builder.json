@@ -1,0 +1,16 @@
+{
+  "category": "geoactivity:basic_tools",
+  "name": "Auto Sandstone Builder",
+  "icon": "geoactivity:auto_sandstone_builder",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Auto Sandstone Builder auto crafts sandstone blocks for you.$(br2)Simply shift and right click it to open the gui and insert the recipe that you want to use. "
+    },
+    {
+      "type": "geoactivity:advanced_crafting",
+      "recipe": "geoactivity:advanced_crafting/auto_sandstone_builder"
+    }
+  ]
+
+}

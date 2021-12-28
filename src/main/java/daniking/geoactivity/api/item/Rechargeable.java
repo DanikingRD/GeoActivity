@@ -18,7 +18,6 @@ public interface Rechargeable {
 
      UUID ATTACK_DAMAGE_MODIFIER_ID = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
      UUID ATTACK_SPEED_MODIFIER_ID = UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3");
-
     /**
      * Nbt key used whenever
      * the tool is fatigued

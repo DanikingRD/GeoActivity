@@ -4,12 +4,12 @@
   "package": "daniking.geoactivity.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "OrePlacedFeaturesAccessor",
     "recharge.InGameHudMixin",
     "recharge.ItemMixin",
     "recharge.ItemStackMixin",
     "recharge.MiningToolItemMixin",
-    "recharge.PlayerInventoryMixin",
-    "OrePlacedFeaturesAccessor"
+    "recharge.PlayerInventoryMixin"
   ],
   "client": [
   ],

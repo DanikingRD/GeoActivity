@@ -35,6 +35,6 @@ public class CraftingMachineShapelessDisplay implements Display {
 
     @Override
     public CategoryIdentifier<?> getCategoryIdentifier() {
-        return GAREIPlugin.CRAFTING_MACHINE;
+        return GAREIPlugin.ADVANCED_CRAFTING;
     }
 }

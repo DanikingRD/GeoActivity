@@ -42,4 +42,8 @@ public final class GAInventory extends InventoryBase {
     public static GAInventory create(final ItemStack stack, final int size) {
         return new GAInventory(stack, size);
     }
+
+    public ItemStack getContainer() {
+        return stack;
+    }
 }

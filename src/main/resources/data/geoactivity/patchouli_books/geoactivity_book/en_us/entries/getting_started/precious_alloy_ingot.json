@@ -1,0 +1,15 @@
+{
+  "category": "geoactivity:getting_started",
+  "name": "Precious Alloy Ingot",
+  "icon": "geoactivity:precious_alloy_ingot",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Precious Alloy Ingot is a fusion between Reinforced Ingot and Diamond and it's used in more advanced recipes such as $(l:geoactivity:basic_tools/auto_stone_builder)Stone Builder."
+    },
+    {
+      "type": "geoactivity:advanced_crafting",
+      "recipe": "geoactivity:advanced_crafting/precious_alloy_ingot"
+    }
+  ]
+}

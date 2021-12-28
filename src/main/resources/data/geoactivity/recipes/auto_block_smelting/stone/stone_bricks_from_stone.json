@@ -1,0 +1,8 @@
+{
+  "type": "geoactivity:auto_block_smelting",
+  "builder": "geoactivity:auto_stone_builder",
+  "input": "minecraft:stone",
+  "result": {
+    "item": "minecraft:stone_bricks"
+  }
+}

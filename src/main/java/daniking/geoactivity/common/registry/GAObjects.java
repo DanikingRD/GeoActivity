@@ -5,7 +5,7 @@ import daniking.geoactivity.common.block.CoalRefinerBlock;
 import daniking.geoactivity.common.block.CraftingMachineBlock;
 import daniking.geoactivity.common.block.GAOreBlock;
 import daniking.geoactivity.common.item.AutoStoneBuilderItem;
-import daniking.geoactivity.common.item.GABookItem;
+import daniking.geoactivity.common.item.util.GABookItem;
 import daniking.geoactivity.common.item.ReinforcedMinerItem;
 import daniking.geoactivity.common.item.advanced.AdvancedAxeItem;
 import daniking.geoactivity.common.item.advanced.AdvancedPickaxeItem;
@@ -13,7 +13,10 @@ import daniking.geoactivity.common.item.advanced.AdvancedShovelItem;
 import daniking.geoactivity.common.item.advanced.AdvancedSwordItem;
 import daniking.geoactivity.common.item.advanced.armor.AdvancedArmorItem;
 import daniking.geoactivity.common.item.util.*;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.GlassBlock;
+import net.minecraft.block.Material;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.sound.BlockSoundGroup;
@@ -40,7 +43,7 @@ public final class GAObjects {
     public static final Item CARBON_FIBER = register("carbon_fiber", new Item(settings()));
     public static final Item CARBON_STICK = register("carbon_stick", new Item(settings()));
     public static final Item REINFORCED_INGOT = register("reinforced_ingot", new Item(settings()));
-    public static final Item SMALL_PRECIOUS_ALLOY_INGOT = register("small_precious_alloy_ingot", new Item(settings().rarity(Rarity.UNCOMMON)));
+    public static final Item PRECIOUS_ALLOY_INGOT = register("precious_alloy_ingot", new Item(settings().rarity(Rarity.UNCOMMON)));
     //ores
     public static final Block LIGNITE_ORE = register("lignite_ore", new GAOreBlock(settings(Material.STONE, 3.0F, 3.0F).requiresTool(), UniformIntProvider.create(0, 2)));
     public static final Block DEEPSLATE_LIGNITE_ORE = register("deepslate_lignite_ore", new GAOreBlock(settings(Material.STONE,  4.5F, 3.0F).requiresTool().sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(0, 2)));
@@ -56,7 +59,6 @@ public final class GAObjects {
     public static final Block GRAPHITE_BASE = register("graphite_base", new GATransparentBlock(settings(Material.STONE, 3.0F, 15.0F).requiresTool().nonOpaque()));
     public static final Block HARDENED_BRICK = register("hardened_brick", new Block(settings(Material.STONE, 20.0F, 150.0F).requiresTool()));
     //reinforced
-    public static final Item AUTO_STONE_BUILDER = register("auto_stone_builder", new AutoStoneBuilderItem(settings().maxDamage(1000)));
     public static final Item REINFORCED_SWORD = register("reinforced_sword", new SwordItem(GAMaterials.REINFORCED_TOOL, 3, -2.4F,settings()));
     public static final Item REINFORCED_PICKAXE = register("reinforced_pickaxe", new GAPickaxeItem(GAMaterials.REINFORCED_TOOL, 1, -2.8F,settings()));
     public static final Item REINFORCED_AXE = register("reinforced_axe", new GAAxeItem(GAMaterials.REINFORCED_TOOL, 5.0F, -3.1F, settings()));
@@ -76,6 +78,9 @@ public final class GAObjects {
     public static final Item ADVANCED_CHESTPLATE = register("advanced_chestplate", new AdvancedArmorItem(GAMaterials.ADVANCED_ARMOR, EquipmentSlot.CHEST, settings()));
     public static final Item ADVANCED_LEGGINGS = register("advanced_leggings", new AdvancedArmorItem(GAMaterials.ADVANCED_ARMOR, EquipmentSlot.LEGS, settings()));
     public static final Item ADVANCED_BOOTS = register("advanced_boots", new AdvancedArmorItem(GAMaterials.ADVANCED_ARMOR, EquipmentSlot.FEET, settings()));
+    //misc
+    public static final Item AUTO_STONE_BUILDER = register("auto_stone_builder", new AutoStoneBuilderItem(settings().maxDamage(1000)));
+    public static final Item AUTO_SANDSTONE_BUILDER = register("auto_sandstone_builder", new AutoStoneBuilderItem(settings().maxDamage(1000)));
     //book
     public static final Item GEOACTIVITY_BOOK = register("geoactivity_book", new GABookItem(settings().maxCount(1)));
 

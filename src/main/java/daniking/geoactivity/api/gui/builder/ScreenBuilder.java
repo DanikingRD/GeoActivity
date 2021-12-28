@@ -98,14 +98,10 @@ public final class ScreenBuilder {
         GuiUtil.drawPercentageTooltip(base, matrixStack, posX, posY, 14, 14, mouseX, mouseY, progress, maxProgress);
     }
 
-    public void drawBigProgressBar(MatrixStack matrixStack, int posX, int posY, int progress, int mouseX, int mouseY) {
+    public void drawCoalSprite(final MatrixStack stack, final int posX, final int posY) {
         this.bindTexture();
-        this.parent.drawTexture(matrixStack, posX, posY, 150, 58, 76, 15);
-        if (progress > 0) {
-            this.parent.drawTexture(matrixStack, posX, posY, 150, 73, progress + 1, 16);
-        }
+        this.parent.drawTexture(stack, posX, posY, 1, 164, 13, 13);
     }
-
 
     private void bindTexture() {
         this.bindTexture(GUI_ELEMENTS);

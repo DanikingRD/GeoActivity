@@ -22,7 +22,7 @@
       "daniking.geoactivity.GeoActivity"
     ],
     "client": [
-      "daniking.geoactivity.GeoActivityClient"
+      "daniking.geoactivity.client.GeoActivityClient"
     ],
     "rei_plugins": [
       "daniking.geoactivity.client.integration.rei.GAREIPlugin"

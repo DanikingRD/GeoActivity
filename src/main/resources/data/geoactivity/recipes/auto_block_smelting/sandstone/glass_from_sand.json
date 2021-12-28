@@ -1,0 +1,8 @@
+{
+  "type": "geoactivity:auto_block_smelting",
+  "builder": "geoactivity:auto_sandstone_builder",
+  "input": "minecraft:sand",
+  "result": {
+    "item": "minecraft:glass"
+  }
+}

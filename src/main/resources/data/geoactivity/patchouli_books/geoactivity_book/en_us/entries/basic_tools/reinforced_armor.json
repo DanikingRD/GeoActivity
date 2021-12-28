@@ -1,0 +1,22 @@
+{
+  "category": "geoactivity:basic_tools",
+  "name": "Reinforced Armor",
+  "icon": "geoactivity:reinforced_chestplate",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Reinforced Material has twice the durability of Iron and slightly better protection."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_helmet",
+      "recipe2": "geoactivity:reinforced_chestplate"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "geoactivity:reinforced_leggings",
+      "recipe2": "geoactivity:reinforced_boots"
+    }
+  ]
+
+}

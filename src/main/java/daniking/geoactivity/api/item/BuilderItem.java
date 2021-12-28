@@ -1,160 +1,166 @@
 package daniking.geoactivity.api.item;
 
-import daniking.geoactivity.common.recipe.ConversionRecipe;
+import daniking.geoactivity.common.recipe.AutoBlockSmeltingRecipe;
 import daniking.geoactivity.common.registry.GARecipeTypes;
 import daniking.geoactivity.common.util.GAInventory;
 import daniking.geoactivity.common.util.RechargeUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
+import java.util.List;
 
-/**
- * Base class for Block Builders.
- */
-public abstract class BuilderItem extends Item implements Rechargeable{
+public abstract class BuilderItem extends Item implements Rechargeable {
 
     public BuilderItem(Settings settings) {
         super(settings);
     }
 
     @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+        GAInventory inventory = GAInventory.create(stack, this.inventorySize());
+        if (this.canSmelt(stack, inventory)) {
+            tooltip.add(new TranslatableText("geoactivity.tooltip.blocks", inventory.getStack(1)).formatted(Formatting.GRAY));
+        }
+    }
+
+    @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         if (context == null) {
             return ActionResult.PASS;
-        }
-        if (context.getPlayer() == null || context.getWorld() == null) {
+        } else if (context.getWorld() == null) {
             return ActionResult.PASS;
+        } else if (context.getPlayer() == null) {
+            return ActionResult.PASS;
+        } else {
+            final ItemStack stack = context.getStack();
+            RechargeUtil.initDestroyedNbt(context.getPlayer(), stack);
+            GAInventory inventory = GAInventory.create(stack, this.inventorySize());
+            if (canSmelt(stack, inventory)) {
+                if (smeltItem(context, inventory)) {
+                    return ActionResult.SUCCESS;
+                }
+            }
         }
-
-        final ItemStack stack = context.getStack();
-        RechargeUtil.initDestroyedNbt(context.getPlayer(), stack);
-
-        if (canConvert(context.getStack())) {
-            convertItem(context);
-            return ActionResult.SUCCESS;
-        }
-
-        return ActionResult.PASS;
+        return super.useOnBlock(context);
     }
 
-    public boolean canConvert(final ItemStack container) {
-        if (container.isEmpty()) {
+    public boolean canSmelt(ItemStack stack, Inventory inventory) {
+        if (inventory.isEmpty()) {
             return false;
         }
-//        if (RechargeUtil.isAlmostBroken(container)) {
-//            RechargeUtil.markFatigued(container);
-//            return false;
-//        }
-        final GAInventory inventory = this.builderInventory(container);
-        final ItemStack inputStack = inventory.getStack(1);
-        final ItemStack outputStack = inventory.getStack(2);
-        if (inputStack.isEmpty() || outputStack.isEmpty()) {
+        final ItemStack input = inventory.getStack(1);
+        final ItemStack output = inventory.getStack(2);
+
+        if (input.isEmpty()) {
             return false;
-        }
-        if (inputStack.getItem() == outputStack.getItem()) {
+        } else if (output.isEmpty()) {
             return false;
+        } else if (input.getItem() == output.getItem()) {
+            return false;
+        } else {
+            return !RechargeUtil.isFatigued(stack);
         }
-        return !RechargeUtil.isFatigued(container);
     }
 
-    protected void convertItem(final ItemUsageContext context) {
-        /*
-         * Fast fail if there is no input, no point checking other stuff if container is not complete
-         * or the player is not using the main hand.
-         */
-        if (!canConvert(context.getStack())) {
-            return;
-        }
+    public boolean smeltItem(ItemUsageContext context, Inventory inventory) {
 
-        if (context.getHand() != Hand.MAIN_HAND) {
-            return;
-        }
+        if (context.getHand() == Hand.MAIN_HAND) {
+            if (this.canSmelt(context.getStack(), inventory)) {
+                final World world = context.getWorld();
+                final BlockPos originPos = context.getBlockPos();
+                final BlockState originState = world.getBlockState(originPos);
+                final Direction side = context.getSide();
+                final ItemStack stack = context.getStack();
+                final ItemStack input = inventory.getStack(1);
+                final ItemStack output = inventory.getStack(2);
+                final PlayerEntity player = context.getPlayer();
+                if (player == null) {
+                    return false;
+                }
+                final AutoBlockSmeltingRecipe type = world
+                        .getRecipeManager()
+                        .listAllOfType(GARecipeTypes.AUTO_BLOCK_SMELTING_RECIPE_TYPE)
+                        .stream()
+                        .filter(recipe -> recipe.input() == input.getItem() && recipe.output().getItem() == output.getItem() && recipe.builder() == this)
+                        .findFirst()
+                        .orElse(null);
+                if (type == null) {
+                    context.getPlayer().sendMessage(new TranslatableText("geoactivity.message.info.wrong_ingredients").append("!").formatted(Formatting.GOLD), true);
+                    return false;
+                }
 
-        final World world = context.getWorld();
-        final BlockPos originPosition = context.getBlockPos();
-        final BlockState originState = world.getBlockState(originPosition);
-        final Direction side = context.getSide();
-        final ItemStack stack = context.getStack();
-        final Inventory inventory = this.builderInventory(stack);
-        final ItemStack inputStack = inventory.getStack(1);
-        final ItemStack outputStack = inventory.getStack(2);
-        final PlayerEntity player = context.getPlayer();
-        Objects.requireNonNull(player);
-
-        final ConversionRecipe type = world
-                .getRecipeManager()
-                .listAllOfType(GARecipeTypes.CONVERSION_RECIPE_TYPE)
-                .stream()
-                .filter(recipe -> recipe.input() == inputStack.getItem() && recipe.output().getItem() == outputStack.getItem())
-                .findFirst().orElse(null);
-
-        if (type == null) {
-            return;
-        }
-
-        //At this point we are ready to craft the new block.
-        if (!world.isClient) {
-            final int inputCount = inputStack.getCount();
-            final int outputCount = outputStack.getCount();
-            final ItemStack outputFromRecipe = type.getOutput();
-
-            if (inputCount > 0 && outputCount > 0 || player.isCreative()) {
-                final BlockState outputState = Block.getBlockFromItem(outputFromRecipe.getItem()).getDefaultState();
-                if (outputState != null && !outputState.isAir()) {
-                    /*
-                     * Let's first check if we are facing a replaceable block.
-                     */
-                    boolean placed = false;
-                    if (this.canPlaceBlock(world, outputState, originPosition) && originState.getMaterial().isReplaceable()) {
-                        world.setBlockState(originPosition, outputState);
-                        placed = true;
-                    }
-                    //Otherwise, lets check if the offset side is empty.
-                    if (!placed) {
-                        final BlockPos offsetPos = originPosition.offset(side);
-                        final BlockState offsetState = world.getBlockState(offsetPos);
-                        if (offsetState.isAir()) {
-                            if (this.canPlaceBlock(world, outputState, offsetPos)) {
-                                world.setBlockState(offsetPos, outputState);
-                                placed = true;
+                if (!world.isClient) {
+                    final int inputCount = input.getCount();
+                    final int outputCount = output.getCount();
+                    final ItemStack result = type.getOutput();
+                    if ((inputCount > 0 && outputCount > 0) || player.isCreative()) {
+                        final Block outputBlock = Block.getBlockFromItem(result.getItem());
+                        if (outputBlock != Blocks.AIR) {
+                            final BlockState outputState = outputBlock.getDefaultState();
+                            if (outputState != null && !outputState.isAir()) {
+                                boolean placed = false;
+                                /*
+                                 * Let's first check if we are facing a replaceable block.
+                                 */
+                                if (canPlaceAt(world, outputState, originPos) && originState.getMaterial().isReplaceable()) {
+                                    world.setBlockState(originPos, outputState);
+                                    placed = true;
+                                } else {
+                                    //Otherwise this is a full block
+                                    //so lets look for the best side
+                                    final BlockPos offsetPos = originPos.offset(side);
+                                    final BlockState offsetState = world.getBlockState(offsetPos);
+                                    //we don't want to replace an existing block
+                                    if (offsetState.isAir()) {
+                                        if (canPlaceAt(world, outputState, offsetPos)) {
+                                            world.setBlockState(offsetPos, outputState);
+                                            placed = true;
+                                        }
+                                    }
+                                    //done to place blocks on fluids
+                                    if (!placed) {
+                                        if (!offsetState.getFluidState().isEmpty()) {
+                                            world.setBlockState(offsetPos, outputState);
+                                            placed = true;
+                                        }
+                                    }
+                                }
+                                if (placed) {
+                                    if (!player.isCreative()) {
+                                        stack.damage(2, player, (user -> user.sendToolBreakStatus(context.getHand())));
+                                        inventory.removeStack(1, 1);
+                                    }
+                                    return true;
+                                }
                             }
-                        }
-                        //Done to place blocks on fluids.
-                        if (!placed) {
-                            if (!offsetState.getFluidState().isEmpty()) {
-                                world.setBlockState(offsetPos, outputState);
-                                placed = true;
-                            }
-                        }
-                    }
-                    if (placed) {
-                        if (!player.isCreative()) {
-                            stack.damage(5, player, (user -> user.sendToolBreakStatus(context.getHand())));
-                            inventory.removeStack(1, 1);
                         }
                     }
                 }
             }
         }
+        return false;
     }
 
-    protected boolean canPlaceBlock(final World world, final BlockState state, final BlockPos at) {
+    private static boolean canPlaceAt(final @NotNull World world, final BlockState state, final BlockPos at) {
         return world.canPlace(state, at, ShapeContext.absent());
-    }
-
-    protected GAInventory builderInventory(final ItemStack stack) {
-        return GAInventory.create(stack, 3);
     }
 }

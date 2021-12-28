@@ -5,14 +5,14 @@ import daniking.geoactivity.GeoActivity;
 import daniking.geoactivity.client.gui.screen.AutoStoneBuilderScreen;
 import daniking.geoactivity.client.gui.screen.CoalRefinerScreen;
 import daniking.geoactivity.client.gui.screen.CraftingMachineScreen;
-import daniking.geoactivity.client.integration.rei.category.ConversionCategory;
+import daniking.geoactivity.client.integration.rei.category.AutoBlockSmeltingCategory;
 import daniking.geoactivity.client.integration.rei.category.RefinementCategory;
 import daniking.geoactivity.client.integration.rei.category.crafting.CraftingMachineCategory;
-import daniking.geoactivity.client.integration.rei.display.ConversionDisplay;
+import daniking.geoactivity.client.integration.rei.display.AutoBlockSmeltingDisplay;
 import daniking.geoactivity.client.integration.rei.display.RefinementDisplay;
 import daniking.geoactivity.client.integration.rei.display.crafting.CraftingMachineShapedDisplay;
 import daniking.geoactivity.client.integration.rei.display.crafting.CraftingMachineShapelessDisplay;
-import daniking.geoactivity.common.recipe.ConversionRecipe;
+import daniking.geoactivity.common.recipe.AutoBlockSmeltingRecipe;
 import daniking.geoactivity.common.recipe.RefinementRecipe;
 import daniking.geoactivity.common.recipe.crafting.CraftingMachineShapedRecipe;
 import daniking.geoactivity.common.recipe.crafting.CraftingMachineShapelessRecipe;
@@ -31,20 +31,20 @@ import net.minecraft.util.Identifier;
 public class GAREIPlugin implements REIClientPlugin {
 
     public static final CategoryIdentifier<RefinementDisplay> REFINEMENT = CategoryIdentifier.of(new Identifier(GeoActivity.MODID, "refinement"));
-    public static final CategoryIdentifier<ConversionDisplay> CONVERSION = CategoryIdentifier.of(new Identifier(GeoActivity.MODID, "conversion"));
-    public static final CategoryIdentifier<SimpleGridMenuDisplay> CRAFTING_MACHINE = CategoryIdentifier.of(new Identifier(GeoActivity.MODID, "crafting_machine"));
+    public static final CategoryIdentifier<SimpleGridMenuDisplay> ADVANCED_CRAFTING = CategoryIdentifier.of(new Identifier(GeoActivity.MODID, "crafting_machine"));
+    public static final CategoryIdentifier<AutoBlockSmeltingDisplay> AUTO_BLOCK_SMELTING = CategoryIdentifier.of(new Identifier(GeoActivity.MODID, "auto_block_smelting"));
 
     @Override
     public void registerCategories(CategoryRegistry registry) {
         RefinementCategory.init(registry);
-        ConversionCategory.init(registry);
+        AutoBlockSmeltingCategory.init(registry);
         CraftingMachineCategory.init(registry);
     }
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(RefinementRecipe.class, RefinementDisplay::new);
-        registry.registerFiller(ConversionRecipe.class, ConversionDisplay::new);
+        registry.registerFiller(AutoBlockSmeltingRecipe.class, AutoBlockSmeltingDisplay::new);
         registry.registerFiller(CraftingMachineShapedRecipe.class, CraftingMachineShapedDisplay::new);
         registry.registerFiller(CraftingMachineShapelessRecipe.class, CraftingMachineShapelessDisplay::new);
     }
@@ -52,7 +52,7 @@ public class GAREIPlugin implements REIClientPlugin {
     @Override
     public void registerScreens(ScreenRegistry registry) {
         registry.registerContainerClickArea(new Rectangle(129, 61, 13, 13), CoalRefinerScreen.class, REFINEMENT);
-        registry.registerContainerClickArea(new Rectangle(125, 60, 13, 13), CraftingMachineScreen.class, CRAFTING_MACHINE);
-        registry.registerContainerClickArea(new Rectangle(77, 48, 22, 16), AutoStoneBuilderScreen.class, CONVERSION);
+        registry.registerContainerClickArea(new Rectangle(125, 60, 13, 13), CraftingMachineScreen.class, ADVANCED_CRAFTING);
+        registry.registerContainerClickArea(new Rectangle(145, 26, 13, 13), AutoStoneBuilderScreen.class, AUTO_BLOCK_SMELTING);
     }
 }

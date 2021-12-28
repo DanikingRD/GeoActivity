@@ -1,8 +1,0 @@
-{
-  "type": "geoactivity:conversion",
-  "builder": "geoactivity:auto_stone_builder",
-  "input": "minecraft:stone_bricks",
-  "result": {
-    "item": "minecraft:stone"
-  }
-}

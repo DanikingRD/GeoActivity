@@ -1,0 +1,17 @@
+{
+  "category": "geoactivity:basic_tools",
+  "name": "Reinforced Miner",
+  "icon": "geoactivity:reinforced_miner",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Reinforced Miner can be recharged using charge coals"
+    },
+    {
+      "type": "geoactivity:advanced_crafting",
+      "recipe": "geoactivity:advanced_crafting/reinforced_miner",
+      "text": "Reinforced Shovel and Pickaxe in one."
+    }
+  ]
+
+}
