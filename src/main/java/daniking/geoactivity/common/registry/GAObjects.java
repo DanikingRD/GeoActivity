@@ -1,11 +1,11 @@
 package daniking.geoactivity.common.registry;
 
 import daniking.geoactivity.GeoActivity;
+import daniking.geoactivity.common.block.AdvancedCoalRefinerBlock;
 import daniking.geoactivity.common.block.CoalRefinerBlock;
 import daniking.geoactivity.common.block.CraftingMachineBlock;
 import daniking.geoactivity.common.block.GAOreBlock;
 import daniking.geoactivity.common.item.AutoStoneBuilderItem;
-import daniking.geoactivity.common.item.util.GABookItem;
 import daniking.geoactivity.common.item.ReinforcedMinerItem;
 import daniking.geoactivity.common.item.advanced.AdvancedAxeItem;
 import daniking.geoactivity.common.item.advanced.AdvancedPickaxeItem;
@@ -39,11 +39,6 @@ public final class GAObjects {
     public static final Item BITUMINOUS_COAL = register("bituminous_coal", new GAChargeItem(settings()));
     public static final Block ANTHRACITE_COAL_BLOCK = register("anthracite_coal_block", new Block(settings(Material.STONE, 5.0F, 6.0F).requiresTool()));
     public static final Item ANTHRACITE_COAL = register("anthracite_coal", new GAChargeItem(settings()));
-    public static final Item GRAPHITE = register("graphite", new Item(settings()));
-    public static final Item CARBON_FIBER = register("carbon_fiber", new Item(settings()));
-    public static final Item CARBON_STICK = register("carbon_stick", new Item(settings()));
-    public static final Item REINFORCED_INGOT = register("reinforced_ingot", new Item(settings()));
-    public static final Item PRECIOUS_ALLOY_INGOT = register("precious_alloy_ingot", new Item(settings().rarity(Rarity.UNCOMMON)));
     //ores
     public static final Block LIGNITE_ORE = register("lignite_ore", new GAOreBlock(settings(Material.STONE, 3.0F, 3.0F).requiresTool(), UniformIntProvider.create(0, 2)));
     public static final Block DEEPSLATE_LIGNITE_ORE = register("deepslate_lignite_ore", new GAOreBlock(settings(Material.STONE,  4.5F, 3.0F).requiresTool().sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(0, 2)));
@@ -51,13 +46,21 @@ public final class GAObjects {
     public static final Block DEEPSLATE_BITUMINOUS_ORE = register("deepslate_bituminous_ore", new GAOreBlock(settings(Material.STONE,  4.5F, 3.0F).requiresTool().sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 5)));
     public static final Block ANTHRACITE_ORE = register("anthracite_ore", new GAOreBlock(settings(Material.STONE, 3.0F, 3.0F).requiresTool(), UniformIntProvider.create(3, 7)));
     public static final Block DEEPSLATE_ANTHRACITE_ORE = register("deepslate_anthracite_ore", new GAOreBlock(settings(Material.STONE,  4.5F, 3.0F).requiresTool().sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(3, 7)));
-    //machines
-    public static final Block COAL_REFINER = register("coal_refiner", new CoalRefinerBlock(settings(Material.METAL, 3.0F, 3.5F).requiresTool().sounds(BlockSoundGroup.STONE).luminance(state -> state.get(CoalRefinerBlock.LIT) ? 13: 0)));
-    public static final Block CRAFTING_MACHINE = register("crafting_machine", new CraftingMachineBlock(settings(Material.METAL, 4.0F, 5.0F).requiresTool().sounds(BlockSoundGroup.STONE)));
-    //misc
+    //graphite
+    public static final Item GRAPHITE = register("graphite", new Item(settings()));
+    public static final Item CARBON_FIBER = register("carbon_fiber", new Item(settings()));
+    public static final Item CARBON_STICK = register("carbon_stick", new Item(settings()));
+    //ingots
+    public static final Item REINFORCED_INGOT = register("reinforced_ingot", new Item(settings()));
+    public static final Item PRECIOUS_ALLOY_INGOT = register("precious_alloy_ingot", new Item(settings().rarity(Rarity.UNCOMMON)));
+    //blocks
     public static final Block HARDENED_GLASS = register("hardened_glass", new GlassBlock(settings(Material.GLASS, 20.0F, 130.0F).requiresTool().nonOpaque()));
     public static final Block GRAPHITE_BASE = register("graphite_base", new GATransparentBlock(settings(Material.STONE, 3.0F, 15.0F).requiresTool().nonOpaque()));
     public static final Block HARDENED_BRICK = register("hardened_brick", new Block(settings(Material.STONE, 20.0F, 150.0F).requiresTool()));
+    //machines
+    public static final Block COAL_REFINER = register("coal_refiner", new CoalRefinerBlock(settings(Material.METAL, 3.0F, 3.5F).requiresTool().sounds(BlockSoundGroup.STONE).luminance(state -> state.get(CoalRefinerBlock.LIT) ? 13: 0)));
+    public static final Block CRAFTING_MACHINE = register("crafting_machine", new CraftingMachineBlock(settings(Material.METAL, 4.0F, 5.0F).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block ADVANCED_COAL_REFINER = register("advanced_coal_refiner", new AdvancedCoalRefinerBlock(settings(Material.METAL, 4.0F, 5.0F).requiresTool()));
     //reinforced
     public static final Item REINFORCED_SWORD = register("reinforced_sword", new SwordItem(GAMaterials.REINFORCED_TOOL, 3, -2.4F,settings()));
     public static final Item REINFORCED_PICKAXE = register("reinforced_pickaxe", new GAPickaxeItem(GAMaterials.REINFORCED_TOOL, 1, -2.8F,settings()));

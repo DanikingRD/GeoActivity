@@ -28,6 +28,7 @@ public class GeoActivityClient implements ClientModInitializer {
         ScreenRegistry.register(GAScreenHandlerTypes.AUTO_STONE_BUILDER, AutoStoneBuilderScreen::new);
         ScreenRegistry.register(GAScreenHandlerTypes.AUTO_SANDSTONE_BUILDER, AutoSandstoneBuilderScreen::new);
         ScreenRegistry.register(GAScreenHandlerTypes.CRAFTING_MACHINE, CraftingMachineScreen::new);
+        ScreenRegistry.register(GAScreenHandlerTypes.ADVANCED_COAL_REFINER, AdvancedCoalRefinerScreen::new);
         ScreenRegistry.register(GAScreenHandlerTypes.BASIC_UPGRADE, BasicUpgradeScreen::new);
     }
 }

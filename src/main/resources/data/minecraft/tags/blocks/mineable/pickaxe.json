@@ -10,10 +10,11 @@
         "geoactivity:anthracite_coal_block",
         "geoactivity:deepslate_anthracite_ore",
         "geoactivity:anthracite_ore",
-        "geoactivity:coal_refiner",
-        "geoactivity:crafting_machine",
+        "geoactivity:advanced_coal_refiner",
         "geoactivity:hardened_glass",
         "geoactivity:graphite_base",
-        "geoactivity:hardened_brick"
+        "geoactivity:hardened_brick",
+        "geoactivity:coal_refiner",
+        "geoactivity:crafting_machine"
     ]
 }
