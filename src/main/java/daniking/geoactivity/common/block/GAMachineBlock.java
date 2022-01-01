@@ -59,10 +59,12 @@ public abstract class GAMachineBlock extends Block implements BlockEntityProvide
         }
     }
 
+    @Override
     public boolean hasComparatorOutput(BlockState state) {
         return true;
     }
 
+    @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
         return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
     }

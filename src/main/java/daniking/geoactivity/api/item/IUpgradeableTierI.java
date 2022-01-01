@@ -5,7 +5,7 @@ import daniking.geoactivity.client.gui.screen.handler.BasicUpgradeScreenHandler;
 import daniking.geoactivity.common.util.GAInventory;
 import net.minecraft.entity.player.PlayerInventory;
 
-public interface IUpgradeable extends Rechargeable {
+public interface IUpgradeableTierI extends Rechargeable {
 
     @Override
     default ItemScreenHandler getGui(final int syncId, final PlayerInventory playerInventory, final GAInventory inventory) {

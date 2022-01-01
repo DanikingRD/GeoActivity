@@ -28,8 +28,8 @@ public class AdvancedCoalRefinerScreen extends GuiBase<AdvancedCoalRefinerScreen
         //perks
         this.builder().drawSlot(matrices, this.left() + 8, this.top() + 14, ScreenBuilder.SlotType.DEFAULT);
         this.builder().drawSlot(matrices, this.left() + 8, this.top() + 34, ScreenBuilder.SlotType.DEFAULT);
-        this.builder().drawACRSMeltingProgress(this, matrices, this.left() + 90, this.top() + 40, 0, 100, mouseX, mouseY);
-        this.builder().drawBurningProgress(this, matrices, false, 0, 100, this.left() + 64, this.top() + 42, mouseX, mouseY);
+        this.builder().drawDoubleSmeltingProgress(this, matrices, this.left() + 90, this.top() + 40, handler.getDoubleProgressScaled(100), 100, mouseX, mouseY);
+        this.builder().drawBurningProgress(this, matrices, handler.isBurning(), handler.getBurnTimeScaled(100), 100, this.left() + 64, this.top() + 42, mouseX, mouseY);
 
     }
 

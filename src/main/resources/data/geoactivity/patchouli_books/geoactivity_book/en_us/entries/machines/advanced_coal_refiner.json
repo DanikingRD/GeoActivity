@@ -1,0 +1,29 @@
+{
+  "category": "geoactivity:machines",
+  "name": "Advanced Coal Refiner",
+  "icon": "geoactivity:advanced_coal_refiner",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Advanced Coal Refiner is a 2x2x2 multiblock structure. $(br2)It refines your coals twice as fast as the low level coal refiner and has the ability to upgrade with perks."
+    },
+    {
+      "type": "geoactivity:advanced_crafting",
+      "recipe": "geoactivity:advanced_crafting/advanced_coal_refiner"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "How to Build",
+      "multiblock": {
+        "mapping": {
+          "C": "geoactivity:advanced_coal_refiner",
+          "0": "geoactivity:advanced_coal_refiner"
+        },
+        "pattern": [
+          ["CC", "CC"],
+          ["CC", "0C"]
+        ]
+      }
+    }
+  ]
+}

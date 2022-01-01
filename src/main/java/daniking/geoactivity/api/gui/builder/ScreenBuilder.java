@@ -76,7 +76,7 @@ public final class ScreenBuilder {
     }
 
     //advanced coal refiner smelting progress
-    public void drawACRSMeltingProgress(GuiBase<?> base, MatrixStack matrixStack, int posX, int posY, int progress, int maxProgress, int mouseX, int mouseY) {
+    public void drawDoubleSmeltingProgress(GuiBase<?> base, MatrixStack matrixStack, int posX, int posY, int progress, int maxProgress, int mouseX, int mouseY) {
         this.bindTexture();
         this.parent.drawTexture(matrixStack, posX - 2, posY - 1, 151, 43, 2, 17);
         this.parent.drawTexture(matrixStack, posX, posY, 150, 26, 22, 15);

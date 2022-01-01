@@ -1,6 +1,8 @@
 package daniking.geoactivity.common.block;
 
+import daniking.geoactivity.api.block.entity.IMachineExperienceHandler;
 import daniking.geoactivity.common.block.entity.AdvancedCoalRefinerBlockEntity;
+import daniking.geoactivity.common.block.entity.GAMachineBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -8,8 +10,10 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
@@ -17,8 +21,11 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
 
 public class AdvancedCoalRefinerBlock extends GAMachineBlock{
 
@@ -37,12 +44,17 @@ public class AdvancedCoalRefinerBlock extends GAMachineBlock{
                 if (entity instanceof AdvancedCoalRefinerBlockEntity machineEntity) {
                     if (machineEntity.getMaster() != null) {
                         player.openHandledScreen(machineEntity.getMaster());
-                        return ActionResult.CONSUME;
+                        return ActionResult.SUCCESS;
                     }
                 }
             }
         }
         return ActionResult.PASS;
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        super.randomTick(state, world, pos, random);
     }
 
     public static void setFormed(boolean formed, World world, BlockPos pos) {
@@ -51,7 +63,8 @@ public class AdvancedCoalRefinerBlock extends GAMachineBlock{
     }
 
     @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+        super.neighborUpdate(state, world, pos, block, fromPos, notify);
         if (!world.isClient) {
             final BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof AdvancedCoalRefinerBlockEntity machine) {
@@ -62,7 +75,10 @@ public class AdvancedCoalRefinerBlock extends GAMachineBlock{
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (state.hasBlockEntity() && !state.isOf(newState.getBlock())) {
+        if (!state.isOf(newState.getBlock())) {
+            if (world.getBlockEntity(pos) instanceof AdvancedCoalRefinerBlockEntity) {
+                world.updateComparators(pos, this);
+            }
             world.removeBlockEntity(pos);
         }
     }
@@ -71,10 +87,9 @@ public class AdvancedCoalRefinerBlock extends GAMachineBlock{
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         var blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof AdvancedCoalRefinerBlockEntity machine) {
-            var master = machine.getMaster();
-            if (master != null) {
+            if (machine.getMaster() != null) {
+                ItemScatterer.spawn(world, pos, machine.getMaster());
                 machine.destroyMultiblock();
-                ItemScatterer.spawn(world, pos, master);
             }
         }
         super.onBreak(world, pos, state, player);

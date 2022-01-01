@@ -1,7 +1,7 @@
 package daniking.geoactivity.common.item.advanced.armor;
 
 import daniking.geoactivity.api.item.IAdvancedArmor;
-import daniking.geoactivity.api.item.IUpgradeable;
+import daniking.geoactivity.api.item.IUpgradeableTierI;
 import daniking.geoactivity.api.item.Rechargeable;
 import daniking.geoactivity.common.util.GAInventory;
 import daniking.geoactivity.common.util.RechargeUtil;
@@ -17,7 +17,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class AdvancedArmorItem extends ArmorItem implements IUpgradeable, IAdvancedArmor {
+public class AdvancedArmorItem extends ArmorItem implements IUpgradeableTierI, IAdvancedArmor {
 
     public AdvancedArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
         super(material, slot, settings);

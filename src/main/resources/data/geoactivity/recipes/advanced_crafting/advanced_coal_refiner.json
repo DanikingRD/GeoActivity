@@ -1,0 +1,25 @@
+{
+  "type": "geoactivity:advanced_crafting_shaped",
+  "pattern": [
+    "GAG",
+    "FCF",
+    "GAG"
+  ],
+  "key": {
+    "G": {
+      "item": "gold_ingot"
+    },
+    "F": {
+      "item": "geoactivity:carbon_fiber"
+    },
+    "C": {
+      "item": "geoactivity:coal_refiner"
+    },
+    "A": {
+      "item": "geoactivity:precious_alloy_ingot"
+    }
+  },
+  "result": {
+    "item": "geoactivity:advanced_coal_refiner"
+  }
+}
